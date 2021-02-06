@@ -8,8 +8,8 @@ router.get("/", function (req, res, next) {
 
 const ds = require("../services/ds");
 router.get("/recipes", function (req, res, next) {
-  ds.get_recipes((r) => {
-    res.send(r);
+  ds.get_recipes().then((recipe) => {
+    res.send(recipe);
   });
 });
 module.exports = router;

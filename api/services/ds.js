@@ -1,17 +1,18 @@
-const spawn = require("child_process").spawn;
-const fs = require("fs");
-const path = require("path");
-
-const get_recipes = (callback) => {
-  const pythonProcess = spawn("python", ["../run.py"]);
-  var res = "";
-  pythonProcess.stdout.on("data", (data) => {
-    data = data.toString();
-    console.log(JSON.parse(data));
-    res += data;
-  });
-  pythonProcess.on("close", function (code) {
-    return callback(res);
+const get_recipes = () => {
+  return new Promise((resolve, reject) => {
+    const spawn = require("child_process").spawn;
+    const pythonProcess = spawn("python", ["../run.py"]);
+    var res = "";
+    pythonProcess.stdout.on("data", (data) => {
+      data = data.toString();
+      res += data;
+    });
+    pythonProcess.on("close", (code) => {
+      resolve(res);
+    });
+    pythonProcess.on("error", (err) => {
+      reject(err);
+    });
   });
 };
 
