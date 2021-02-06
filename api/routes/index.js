@@ -1,22 +1,15 @@
 var express = require("express");
 var router = express.Router();
 
-const spawn = require("child_process").spawn;
-const fs = require("fs");
-const path = require("path");
-
 /* GET home page. */
 router.get("/", function (req, res, next) {
   res.render("index", { title: "Express" });
 });
 
+const ds = require("../services/ds");
 router.get("/recipes", function (req, res, next) {
-  const pythonProcess = spawn("python", ["../../run.py"]);
-  pythonProcess.stdout.on("data", (data) => {
-    console.log(data);
-    console.log("Hi");
+  ds.get_recipes((r) => {
+    res.send(r);
   });
-  res.json(data);
 });
-
 module.exports = router;
