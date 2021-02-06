@@ -1,5 +1,0 @@
-This is just a test!
-
-Some text
-
-I changed this on Github!
