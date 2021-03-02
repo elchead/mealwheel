@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Button from "@material-ui/core/Button";
 import CameraIcon from "@material-ui/icons/PhotoCamera";
@@ -13,6 +13,29 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
+
+const Recipe = ({ recipes }) => {
+  return (
+    <div>
+      <center>
+        <h1>Contact List</h1>
+      </center>
+      {recipes.map((recipe) => (
+        <div class="card">
+          <p>{recipe.ingredients}</p>
+          <p>{recipe.steps}</p>
+        </div>
+        /* <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{recipe.name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">{recipe.email}</h6>
+            <p class="card-text">{recipe.company.catchPhrase}</p>
+          </div>
+        </div> */
+      ))}
+    </div>
+  );
+};
 
 function Copyright() {
   return (
@@ -59,10 +82,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+const cards = [1, 2, 3];
 
 export default function Album() {
   const classes = useStyles();
+  // const recipe = useState(0);
+  // recipe(
+  //   fetch("http://localhost:5000/recipes")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       this.setState({ recipe: data });
+  //     })
+  //     .catch(console.log)
+  // );
 
   return (
     <React.Fragment>
@@ -70,8 +102,8 @@ export default function Album() {
       <AppBar position="relative">
         <Toolbar>
           <CameraIcon className={classes.icon} />
-          <Typography variant="h6" color="inherit" noWrap>
-            Album layout
+          <Typography variant="h6" align="center" color="inherit" noWrap>
+            MealWheel
           </Typography>
         </Toolbar>
       </AppBar>
@@ -86,7 +118,7 @@ export default function Album() {
               color="textPrimary"
               gutterBottom
             >
-              Album layout
+              MealWheel
             </Typography>
             <Typography
               variant="h5"
@@ -94,11 +126,9 @@ export default function Album() {
               color="textSecondary"
               paragraph
             >
-              Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
+              The meal planner to save you time and reduce waste
             </Typography>
-            <div className={classes.heroButtons}>
+            {/* <div className={classes.heroButtons}>
               <Grid container spacing={2} justify="center">
                 <Grid item>
                   <Button variant="contained" color="primary">
@@ -111,14 +141,14 @@ export default function Album() {
                   </Button>
                 </Grid>
               </Grid>
-            </div>
+            </div> */}
           </Container>
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
           {/* End hero unit */}
           <Grid container spacing={4}>
             {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
+              <Grid item key={card} xs={3} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
@@ -127,11 +157,12 @@ export default function Album() {
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5" component="h2">
-                      Heading
+                      {/* <Recipe recipes={recipe}></Recipe> */}
                     </Typography>
                     <Typography>
-                      This is a media card. You can use this section to describe
-                      the content.
+                      fetch()
+                      {/* This is a media card. You can use this section to describe
+                      the content. */}
                     </Typography>
                   </CardContent>
                   <CardActions>
