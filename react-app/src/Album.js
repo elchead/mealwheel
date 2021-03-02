@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
+import recipe_img from "./images/recipe_s.jpg";
 
 const Recipe = ({ recipes }) => {
   return (
@@ -152,7 +153,7 @@ export default function Album() {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
+                    image={recipe_img}
                     title="Image title"
                   />
                   <CardContent className={classes.cardContent}>
