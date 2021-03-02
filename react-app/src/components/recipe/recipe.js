@@ -6,14 +6,38 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import recipe_img from "../../images/recipe_s.jpg";
 
+const RecipeCard = (props) => {
+  return (
+    <div>
+      <Typography>Ingredients</Typography>
+      <ul>
+        {props.recipe.Ingredients.map((i) => (
+          <li>{i}</li>
+        ))}
+      </ul>
+      <Typography>Steps</Typography>
+      <p>{props.recipe.Steps}</p>
+    </div>
+  );
+};
 const Recipe = (props) => {
-  let [responseObj, setResponseObj] = useState({});
+  let [responseObj, setResponseObj] = useState({ Ingredients: [] });
   let [cards, setCards] = useState([1, 2, 3]);
+  useEffect(() => {
+    getData()
+      .catch((err) => {
+        console.error(err);
+      })
+      .then((data) => {
+        console.log(data);
+        setResponseObj(data);
+      });
+  }, []);
   async function getData() {
-    const res = await fetch("localhost:5000/recipes");
+    const res = await fetch("http://localhost:5000/recipes");
     const recipes = await res.json();
     return recipes;
   }
@@ -30,14 +54,12 @@ const Recipe = (props) => {
                 title="Image title"
               />
               <CardContent className={props.classes.cardContent}>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {/* <Recipe recipes={recipe}></Recipe> */}
-                </Typography>
-                <Typography>
-                  Hi
-                  {/* This is a media card. You can use this section to describe
-                      the content. */}
-                </Typography>
+                <Typography
+                  gutterBottom
+                  variant="h5"
+                  component="h2"
+                ></Typography>
+                <RecipeCard recipe={responseObj} />
               </CardContent>
               <CardActions>
                 <Button size="small" color="primary">

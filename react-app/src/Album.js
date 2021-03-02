@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CameraIcon from "@material-ui/icons/PhotoCamera";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -53,8 +53,6 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(6),
   },
 }));
-
-const cards = [1, 2, 3];
 
 export default function Album() {
   const classes = useStyles();
