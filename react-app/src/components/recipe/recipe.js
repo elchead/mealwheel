@@ -37,7 +37,9 @@ const Recipe = (props) => {
       });
   }, []);
   async function getData() {
-    const res = await fetch("http://localhost:5000/recipes");
+    const url = "https://mealwheel21.herokuapp.com/recipes";
+    // url = "http://localhost:5000/recipes";
+    const res = await fetch(url);
     const recipes = await res.json();
     return recipes;
   }
