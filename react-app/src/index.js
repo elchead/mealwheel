@@ -9,11 +9,6 @@ import { App } from "./App/App";
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <link
-        rel="stylesheet"
-        href="https://netdna.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      /> */}
-
       <App />
     </Provider>
   </React.StrictMode>,
