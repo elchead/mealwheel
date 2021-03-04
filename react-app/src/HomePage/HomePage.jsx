@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Album() {
+export function HomePage() {
   const classes = useStyles();
   return (
     <React.Fragment>
