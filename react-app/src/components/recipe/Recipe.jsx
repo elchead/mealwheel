@@ -9,7 +9,7 @@ import Button from "@material-ui/core/Button";
 import { useState, useEffect } from "react";
 import recipe_img from "../../images/recipe_s.jpg";
 import config from "../../config.json";
-
+import RecipeReviewCard from "../RecipeCard/RecipeCard";
 const RecipeCard = (props) => {
   return (
     <div>
@@ -50,7 +50,8 @@ const Recipe = (props) => {
       <Grid container spacing={4}>
         {cards.map((card) => (
           <Grid item key={card} xs={3} sm={6} md={4}>
-            <Card className={props.classes.card}>
+            <RecipeReviewCard />
+            {/* <Card className={props.classes.card}>
               <CardMedia
                 className={props.classes.cardMedia}
                 image={recipe_img}
@@ -62,7 +63,7 @@ const Recipe = (props) => {
                   variant="h5"
                   component="h2"
                 ></Typography>
-                <RecipeCard recipe={responseObj} />
+                <RecipeReviewCard />
               </CardContent>
               <CardActions>
                 <Button size="small" color="primary">
@@ -72,7 +73,7 @@ const Recipe = (props) => {
                   Edit
                 </Button>
               </CardActions>
-            </Card>
+            </Card> */}
           </Grid>
         ))}
       </Grid>
