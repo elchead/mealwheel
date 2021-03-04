@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import App from "./App/App";
 import reportWebVitals from "./reportWebVitals";
-import Album from "./Album";
+import Album from "./App/Album";
 
 ReactDOM.render(
   <React.StrictMode>
