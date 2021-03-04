@@ -8,6 +8,7 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import { useState, useEffect } from "react";
 import recipe_img from "../../images/recipe_s.jpg";
+import config from "../../config.json";
 
 const RecipeCard = (props) => {
   return (
@@ -37,7 +38,7 @@ const Recipe = (props) => {
       });
   }, []);
   async function getData() {
-    const url = "https://mealwheel21.herokuapp.com/recipes";
+    const url = config.apiUrl + "/recipes";
     // url = "http://localhost:5000/recipes";
     const res = await fetch(url);
     const recipes = await res.json();
