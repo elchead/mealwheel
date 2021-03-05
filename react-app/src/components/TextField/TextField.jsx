@@ -13,6 +13,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function TextField(props) {
   return (
-    <BasicTextFields id="standard-basic" label={props.text} variant="filled" />
+    <BasicTextFields
+      {...props}
+      // id="standard-basic" // TODO no id?
+      label={props.text}
+      variant="filled"
+    />
   );
 }
