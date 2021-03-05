@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import Recipe from "../components/Recipe/Recipe";
+import LoginMask from "../components/Login/Login";
 
 function Copyright() {
   return (
@@ -59,12 +60,13 @@ export function HomePage() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="relative">
+      <AppBar color="secondary" position="relative">
         <Toolbar>
-          <CameraIcon className={classes.icon} />
+          {/* <CameraIcon className={classes.icon} /> */}
           <Typography variant="h6" align="center" color="inherit" noWrap>
             MealWheel
           </Typography>
+          <LoginMask />
         </Toolbar>
       </AppBar>
       <main>
