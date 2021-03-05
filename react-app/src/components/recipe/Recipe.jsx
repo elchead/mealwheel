@@ -9,21 +9,8 @@ import Button from "@material-ui/core/Button";
 import { useState, useEffect } from "react";
 import recipe_img from "../../images/recipe_s.jpg";
 import config from "../../config.json";
-import RecipeReviewCard from "../RecipeCard/RecipeCard";
-const RecipeCard = (props) => {
-  return (
-    <div>
-      <Typography>Ingredients</Typography>
-      <ul>
-        {props.recipe.Ingredients.map((i) => (
-          <li>{i}</li>
-        ))}
-      </ul>
-      <Typography>Steps</Typography>
-      <p>{props.recipe.Steps}</p>
-    </div>
-  );
-};
+import RecipeCard from "./RecipeCard";
+
 const Recipe = (props) => {
   let [responseObj, setResponseObj] = useState({ Ingredients: [] });
   let [cards, setCards] = useState([1, 2, 3]);
@@ -34,6 +21,7 @@ const Recipe = (props) => {
       })
       .then((data) => {
         console.log(data);
+        data.img = recipe_img;
         setResponseObj(data);
       });
   }, []);
@@ -50,30 +38,7 @@ const Recipe = (props) => {
       <Grid container spacing={4}>
         {cards.map((card) => (
           <Grid item key={card} xs={3} sm={6} md={4}>
-            <RecipeReviewCard />
-            {/* <Card className={props.classes.card}>
-              <CardMedia
-                className={props.classes.cardMedia}
-                image={recipe_img}
-                title="Image title"
-              />
-              <CardContent className={props.classes.cardContent}>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="h2"
-                ></Typography>
-                <RecipeReviewCard />
-              </CardContent>
-              <CardActions>
-                <Button size="small" color="primary">
-                  View
-                </Button>
-                <Button size="small" color="primary">
-                  Edit
-                </Button>
-              </CardActions>
-            </Card> */}
+            <RecipeCard recipe={responseObj} />
           </Grid>
         ))}
       </Grid>
