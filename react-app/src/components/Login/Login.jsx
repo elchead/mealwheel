@@ -16,13 +16,27 @@ const useStyles = makeStyles((theme) => ({
       width: "25ch",
     },
   },
+  Text: {
+    color: "white",
+  },
 }));
 
 export function LoginField(props) {
+  const classes = useStyles();
   return (
     <>
-      <TextField name="username" text="Username" onChange={props.onChange} />
       <TextField
+        InputProps={{
+          className: classes.Text,
+        }}
+        name="username"
+        text="Username"
+        onChange={props.onChange}
+      />
+      <TextField
+        InputProps={{
+          className: classes.Text,
+        }}
         name="password"
         type="password"
         onChange={props.onChange}
