@@ -8,6 +8,7 @@ import { PrivateRoute } from "../components";
 import { HomePage } from "../HomePage";
 import { LoginPage } from "../LoginPage";
 import { RegisterPage } from "../RegisterPage";
+import SignUp from "../components/SignUp";
 
 function App() {
   const alert = useSelector((state) => state.alert);
@@ -31,7 +32,7 @@ function App() {
           <Router history={history}>
             <Route exact path="/" component={HomePage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/register" component={RegisterPage} />
+            <Route path="/register" component={SignUp} />
             {/* <Switch>
               <PrivateRoute exact path="/" component={HomePage} />
               <Route path="/login" component={LoginPage} />

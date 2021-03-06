@@ -117,7 +117,7 @@ export default function LoginMask() {
 function RegisterButton() {
   return (
     <Link to="/register">
-      <DefaultButton text="Register"></DefaultButton>
+      <DefaultButton text="Sign Up"></DefaultButton>
     </Link>
   );
 }
