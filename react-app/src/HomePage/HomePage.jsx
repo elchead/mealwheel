@@ -1,7 +1,6 @@
 import React from "react";
 import AppBar from "@material-ui/core/AppBar";
 import CameraIcon from "@material-ui/icons/PhotoCamera";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
@@ -59,7 +58,6 @@ export function HomePage() {
   const classes = useStyles();
   return (
     <React.Fragment>
-      <CssBaseline />
       <AppBar color="secondary" position="relative">
         <Toolbar>
           {/* <CameraIcon className={classes.icon} /> */}
