@@ -87,6 +87,18 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
+        {submitted && !user.firstName && (
+          <div className="invalid-feedback">First Name is required</div>
+        )}
+        {submitted && !user.lastName && (
+          <div className="invalid-feedback">Last Name is required</div>
+        )}
+        {submitted && !user.username && (
+          <div className="invalid-feedback">Username is required</div>
+        )}
+        {submitted && !user.password && (
+          <div className="invalid-feedback">Password is required</div>
+        )}
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
@@ -112,10 +124,6 @@ export default function SignUp() {
                 name="lastName"
                 autoComplete="lname"
                 onChange={handleChange}
-                className={
-                  "form-control" +
-                  (submitted && !user.username ? " is-invalid" : "")
-                }
               />
             </Grid>
             <Grid item xs={12} sm={12}>
