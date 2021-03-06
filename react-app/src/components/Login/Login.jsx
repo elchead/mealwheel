@@ -10,6 +10,7 @@ import { userActions } from "../../_actions";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    display: "flex",
     "& > *": {
       margin: theme.spacing(1),
       width: "25ch",
@@ -63,7 +64,7 @@ export default function LoginMask() {
     dispatch(userActions.logout());
   }
   return (
-    <div>
+    <>
       {!isLoggedIn ? (
         <form
           className={classes.root}
@@ -95,7 +96,7 @@ export default function LoginMask() {
           />
         </>
       )}
-    </div>
+    </>
   );
 }
 
