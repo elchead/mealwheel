@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "../TextField/TextField";
 import DefaultButton from "../Button/Button";
-
+import Typography from "@material-ui/core/Typography";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -31,37 +31,18 @@ export function LoginField(props) {
   );
 }
 
-export function LoginButton(props) {
-  const dispatch = useDispatch();
-  function handle(e) {
-    const isLoggedIn = props.loggedIn;
-    if (isLoggedIn) {
-      dispatch(userActions.logout());
-      console.log("log out");
-    }
-  }
-  return (
-    <DefaultButton
-      type={props.loggedIn ? "button" : "submit"}
-      text={props.loggedIn ? "Logout" : "Login"}
-      onClick={handle}
-    ></DefaultButton>
-  );
-}
-
 export default function LoginMask() {
   const classes = useStyles();
   const [submitted, setSubmitted] = useState(false);
-  const [isLoggedIn, setLogin] = useState(false);
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
   });
   const { username, password } = inputs;
-  const loggedIn = useSelector((state) => state.authentication.loggedIn);
+  const isLoggedIn = useSelector((state) => state.authentication.loggedIn);
   const dispatch = useDispatch();
   const location = useLocation();
-  function handleChange(e) {
+  function handleInput(e) {
     const target = e.target;
     setInputs({ ...inputs, [target.name]: target.value });
   }
@@ -75,30 +56,44 @@ export default function LoginMask() {
       dispatch(userActions.login(username, password, from));
     }
   }
+
+  function handleLogout(e) {
+    setInputs({});
+    setSubmitted(false);
+    dispatch(userActions.logout());
+  }
   return (
     <div>
-      {!loggedIn ? (
+      {!isLoggedIn ? (
         <form
           className={classes.root}
           noValidate
           autoComplete="off"
           onSubmit={handleSubmit}
         >
-          <LoginField onChange={handleChange}></LoginField>
+          <LoginField onChange={handleInput}></LoginField>
           {submitted && !username && (
             <div className="invalid-feedback">Username is required</div>
           )}
           {submitted && !password && (
             <div className="invalid-feedback">Password is required</div>
           )}
-          <LoginButton loggedIn={loggedIn}></LoginButton>
+          <DefaultButton type="submit" text="Login" />
+          {/* <LoginButton loggedIn={isLoggedIn}></LoginButton> */}
           <RegisterButton />
-          {loggedIn && (
+          {isLoggedIn && (
             <span className="spinner-border spinner-border-sm mr-1"></span>
           )}
         </form>
       ) : (
-        <LoginButton loggedIn={loggedIn}></LoginButton>
+        <>
+          <Typography>Hello {username}</Typography>
+          <DefaultButton
+            type="button"
+            text={isLoggedIn ? "Logout" : "Login"}
+            onClick={handleLogout}
+          />
+        </>
       )}
     </div>
   );
