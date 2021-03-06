@@ -10,17 +10,18 @@ import { useState, useEffect } from "react";
 import recipe_img from "../../images/recipe_s.jpg";
 import config from "../../config.json";
 import RecipeCard from "./RecipeCard";
+import { useDispatch, useSelector } from "react-redux";
 
 const Recipe = (props) => {
   let [responseObj, setResponseObj] = useState({ Ingredients: [] });
   let [cards, setCards] = useState([1, 2, 3]);
+  const loggedIn = useSelector((state) => state.authentication.loggedIn);
   useEffect(() => {
     getData()
       .catch((err) => {
         console.error(err);
       })
       .then((data) => {
-        console.log(data);
         data.img = recipe_img;
         setResponseObj(data);
       });
@@ -36,11 +37,12 @@ const Recipe = (props) => {
     <Container className={props.classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
       <Grid container spacing={4}>
-        {cards.map((card) => (
-          <Grid item key={card} xs={3} sm={6} md={4}>
-            <RecipeCard recipe={responseObj} />
-          </Grid>
-        ))}
+        {loggedIn &&
+          cards.map((card) => (
+            <Grid item key={card} xs={3} sm={6} md={4}>
+              <RecipeCard recipe={responseObj} />
+            </Grid>
+          ))}
       </Grid>
     </Container>
   );
