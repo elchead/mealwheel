@@ -8,7 +8,7 @@ import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import { useState, useEffect } from "react";
 import recipe_img from "../../images/recipe_s.jpg";
-import config from "../../config.json";
+import config from "../../config";
 import RecipeCard from "./RecipeCard";
 import { useDispatch, useSelector } from "react-redux";
 
