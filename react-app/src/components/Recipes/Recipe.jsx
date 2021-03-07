@@ -8,7 +8,7 @@ import RecipeCard from "./RecipeCard";
 import { useDispatch, useSelector } from "react-redux";
 
 const Recipe = (props) => {
-  let [responseObj, setResponseObj] = useState({ Ingredients: [] });
+  let [responseObj, setResponseObj] = useState({ steps: [] });
   let [cards, setCards] = useState([1, 2, 3]);
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
   const userToken = useSelector((state) =>

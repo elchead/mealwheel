@@ -60,19 +60,17 @@ export default function RecipeCard(props) {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title={props.recipe.name}
         subheader="September 14, 2016"
       />
       <CardMedia
         className={classes.media}
         image={props.recipe.img}
-        title="Paella dish"
+        title={props.recipe.name}
       />
       <CardContent>
         <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
+          {props.recipe.description}
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
@@ -95,15 +93,19 @@ export default function RecipeCard(props) {
       </CardActions>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography paragraph>Ingredients:</Typography>
           <Typography paragraph>
-            <ul>
-              {props.recipe.Ingredients.map((i) => (
+            <b>Preparation time:</b> {props.recipe.minutes} min
+          </Typography>
+          <Typography paragraph>
+            <b>Steps</b>:
+          </Typography>
+          <Typography paragraph>
+            <ol>
+              {props.recipe.steps.map((i) => (
                 <li>{i}</li>
               ))}
-            </ul>
+            </ol>
           </Typography>
-          <Typography paragraph>Method:</Typography>
           <Typography paragraph>{props.recipe.Steps}</Typography>
         </CardContent>
       </Collapse>
