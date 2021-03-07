@@ -11,5 +11,4 @@ config = {
   // Add common config values here
   ...config,
 };
-console.log(process.env.REACT_APP_STAGE);
 export default config;

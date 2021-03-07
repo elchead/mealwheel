@@ -18,20 +18,23 @@ const Recipe = (props) => {
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
   useEffect(() => {
     getData()
-      .catch((err) => {
-        console.error(err);
-      })
       .then((data) => {
         data.img = recipe_img;
         setResponseObj(data);
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }, []);
   async function getData() {
     const url = config.apiUrl + "/recipes";
-    // url = "http://localhost:5000/recipes";
-    const res = await fetch(url);
-    const recipes = await res.json();
-    return recipes;
+    try {
+      const res = await fetch(url);
+      const recipes = await res.json();
+      return recipes;
+    } catch (err) {
+      throw new Error("API is not available");
+    }
   }
   return (
     <Container className={props.classes.cardGrid} maxWidth="md">
