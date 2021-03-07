@@ -8,8 +8,12 @@ import RecipeCard from "./RecipeCard";
 import { useDispatch, useSelector } from "react-redux";
 
 const Recipe = (props) => {
-  let [responseObj, setResponseObj] = useState({ Ingredients: [] });
-  let [cards, setCards] = useState([1, 2, 3]);
+  let [responseObj, setResponseObj] = useState([
+    { names: "", steps: [] },
+    { names: "", steps: [] },
+    { names: "", steps: [] },
+  ]);
+  let [cards, setCards] = useState([0, 1, 2]);
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
   const userToken = useSelector((state) =>
     state.authentication.loggedIn ? state.authentication.user.token : undefined
@@ -18,7 +22,8 @@ const Recipe = (props) => {
     if (loggedIn) {
       getData()
         .then((data) => {
-          data.img = recipe_img;
+          data.map((card) => (card.img = recipe_img));
+          // data.img = recipe_img;
           setResponseObj(data);
         })
         .catch((err) => {
@@ -52,7 +57,7 @@ const Recipe = (props) => {
         {loggedIn &&
           cards.map((card) => (
             <Grid item key={card} xs={3} sm={6} md={4}>
-              <RecipeCard recipe={responseObj} />
+              <RecipeCard recipe={responseObj[card]} />
             </Grid>
           ))}
       </Grid>
