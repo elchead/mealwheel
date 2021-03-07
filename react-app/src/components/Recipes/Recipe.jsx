@@ -25,7 +25,7 @@ const Recipe = (props) => {
           console.error(err);
         });
     }
-  });
+  }, [loggedIn]);
   async function getData() {
     const url = config.apiUrl + "/recipes";
     const bearer = "Bearer " + userToken;
