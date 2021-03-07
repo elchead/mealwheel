@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -14,12 +13,13 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { userActions } from "../_actions";
+import { MissingFieldError } from "../components/Alert";
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        MealWheel
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "space-between",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -56,7 +57,6 @@ export default function SignUp() {
     password: "",
   });
   const [submitted, setSubmitted] = useState(false);
-  const registering = useSelector((state) => state.registration.registering);
   const dispatch = useDispatch();
 
   // reset login status
@@ -79,7 +79,6 @@ export default function SignUp() {
 
   return (
     <Container component="main" maxWidth="xs">
-      <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
@@ -87,20 +86,24 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        {submitted && !user.firstName && (
-          <div className="invalid-feedback">First Name is required</div>
-        )}
-        {submitted && !user.lastName && (
-          <div className="invalid-feedback">Last Name is required</div>
-        )}
-        {submitted && !user.username && (
-          <div className="invalid-feedback">Username is required</div>
-        )}
-        {submitted && !user.password && (
-          <div className="invalid-feedback">Password is required</div>
-        )}
+
         <form className={classes.form} noValidate onSubmit={handleSubmit}>
           <Grid container spacing={2}>
+            {submitted && !user.firstName && (
+              <Grid item xs={12} sm={12}>
+                <MissingFieldError field="First Name" />
+              </Grid>
+            )}
+            {submitted && !user.lastName && (
+              <Grid item xs={12} sm={12}>
+                <MissingFieldError field="Last Name" />
+              </Grid>
+            )}
+            {submitted && !user.password && (
+              <Grid item xs={12} sm={12}>
+                <MissingFieldError field="Password" />
+              </Grid>
+            )}
             <Grid item xs={12} sm={6}>
               <TextField
                 autoComplete="fname"

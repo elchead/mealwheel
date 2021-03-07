@@ -7,8 +7,7 @@ import { alertActions } from "../_actions";
 import { PrivateRoute } from "../components";
 import { HomePage } from "../HomePage";
 import { LoginPage } from "../LoginPage";
-import { RegisterPage } from "../RegisterPage";
-import SignUp from "../components/SignUp";
+import SignUp from "../SignUpPage/SignUp";
 
 function App() {
   const alert = useSelector((state) => state.alert);
