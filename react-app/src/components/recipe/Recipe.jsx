@@ -1,11 +1,6 @@
-import Card from "@material-ui/core/Card";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-import Button from "@material-ui/core/Button";
 import { useState, useEffect } from "react";
 import recipe_img from "../../images/recipe_s.jpg";
 import config from "../../config";
@@ -16,20 +11,34 @@ const Recipe = (props) => {
   let [responseObj, setResponseObj] = useState({ Ingredients: [] });
   let [cards, setCards] = useState([1, 2, 3]);
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
+  const userToken = useSelector((state) =>
+    state.authentication.loggedIn ? state.authentication.user.token : undefined
+  );
   useEffect(() => {
-    getData()
-      .then((data) => {
-        data.img = recipe_img;
-        setResponseObj(data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }, []);
+    if (loggedIn) {
+      getData()
+        .then((data) => {
+          data.img = recipe_img;
+          setResponseObj(data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  });
   async function getData() {
     const url = config.apiUrl + "/recipes";
+    const bearer = "Bearer " + userToken;
     try {
-      const res = await fetch(url);
+      const res = await fetch(url, {
+        method: "GET",
+        withCredentials: true,
+        credentials: "include",
+        headers: {
+          Authorization: bearer,
+          "Content-Type": "application/json",
+        },
+      });
       const recipes = await res.json();
       return recipes;
     } catch (err) {
