@@ -1,2 +1,2 @@
 export * from "./PrivateRoute";
-export * from "./Recipe/Recipe";
+export * from "./Recipes/Recipe";
