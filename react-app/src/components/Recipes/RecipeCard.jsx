@@ -39,6 +39,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+function FavoriteButton() {
+  function handleFavorite() {
+    console.log("Hi");
+  }
+  return (
+    <>
+      <IconButton
+        aria-label="add to favorites"
+        color="secondary"
+        onClick={handleFavorite}
+      >
+        <FavoriteIcon />
+      </IconButton>
+    </>
+  );
+}
+
 export default function RecipeCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -46,6 +63,10 @@ export default function RecipeCard(props) {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  function handleFavorite() {
+    console.log("Hi");
+  }
 
   return (
     <Card className={classes.root}>
@@ -74,9 +95,7 @@ export default function RecipeCard(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
+        <FavoriteButton />
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
