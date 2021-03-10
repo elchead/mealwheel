@@ -9,6 +9,7 @@ export const userService = {
   getById,
   update,
   delete: _delete,
+  saveRecipe,
 };
 
 function login(username, password) {
@@ -104,4 +105,18 @@ function handleResponse(response) {
 
     return data;
   });
+}
+
+function saveRecipe(userId, recipe) {
+  const req = { recipe: recipe };
+  const requestOptions = {
+    method: "POST",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify(req),
+  };
+
+  return fetch(
+    `${config.apiUrl}/users/${userId}/saveRecipe`,
+    requestOptions
+  ).then(handleResponse);
 }

@@ -15,6 +15,8 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
+import { userService } from "../../_services/user.service";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,12 +41,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FavoriteButton() {
+function FavoriteButton(props) {
   const [isSelected, setSelected] = React.useState(false);
+  const userId = useSelector((state) => state.authentication.user.id);
   function handleFavorite() {
     setSelected(!isSelected);
     if (isSelected) {
       // save Recipe
+      userService.saveRecipe(userId, props.recipe);
     }
   }
   return (
@@ -95,7 +99,7 @@ export default function RecipeCard(props) {
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <FavoriteButton />
+        <FavoriteButton recipe={props.recipe} />
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
