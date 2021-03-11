@@ -10,6 +10,7 @@ export const userService = {
   update,
   delete: _delete,
   saveRecipe,
+  deleteRecipe,
 };
 
 function login(username, password) {
@@ -92,6 +93,7 @@ function _delete(id) {
 function handleResponse(response) {
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
+    console.log(response);
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
@@ -117,6 +119,17 @@ function saveRecipe(userId, recipe) {
 
   return fetch(
     `${config.apiUrl}/users/${userId}/saveRecipe`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function deleteRecipe(userId, recipe) {
+  const requestOptions = {
+    method: "POST",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+  };
+  return fetch(
+    `${config.apiUrl}/users/${userId}/deleteRecipe/${recipe.id}`,
     requestOptions
   ).then(handleResponse);
 }

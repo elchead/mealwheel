@@ -45,11 +45,12 @@ function FavoriteButton(props) {
   const [isSelected, setSelected] = React.useState(false);
   const userId = useSelector((state) => state.authentication.user.id);
   function handleFavorite() {
-    setSelected(!isSelected);
-    if (isSelected) {
-      // save Recipe
+    if (!isSelected) {
       userService.saveRecipe(userId, props.recipe);
+    } else {
+      userService.deleteRecipe(userId, props.recipe);
     }
+    setSelected(!isSelected);
   }
   return (
     <>
