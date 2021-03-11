@@ -18,7 +18,6 @@ function App() {
       // clear alert on location change
       dispatch(alertActions.clear());
     });
-    // dispatch(userActions.logout());
   });
 
   return (
@@ -30,8 +29,8 @@ function App() {
           )}
           <Router history={history}>
             <Route exact path="/" component={HomePage} />
-            <Route path="/login" component={LoginPage} />
             <Route path="/register" component={SignUp} />
+            {/* <Route path="/login" component={LoginPage} /> */}
             {/* <Switch>
               <PrivateRoute exact path="/" component={HomePage} />
               <Route path="/login" component={LoginPage} />

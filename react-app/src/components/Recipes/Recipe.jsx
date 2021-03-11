@@ -6,31 +6,25 @@ import recipe_img from "../../images/recipe_s.jpg";
 import config from "../../config";
 import RecipeCard from "./RecipeCard";
 import { useDispatch, useSelector } from "react-redux";
+var _ = require("underscore");
 
 const Recipe = (props) => {
-  let [responseObj, setResponseObj] = useState([
-    { names: "", steps: [] },
-    { names: "", steps: [] },
-    { names: "", steps: [] },
-  ]);
+  let [responseObj, setResponseObj] = useState([]);
   let [cards, setCards] = useState([0, 1, 2]);
-  const loggedIn = useSelector((state) => state.authentication.loggedIn);
   const userToken = useSelector((state) =>
     state.authentication.loggedIn ? state.authentication.user.token : undefined
   );
   useEffect(() => {
-    if (loggedIn) {
-      getData()
-        .then((data) => {
-          data.map((card) => (card.img = recipe_img));
-          // data.img = recipe_img;
-          setResponseObj(data);
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }, [loggedIn]);
+    getData()
+      .then((data) => {
+        data.map((card) => (card.img = recipe_img));
+        // data.img = recipe_img;
+        setResponseObj(data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }, []);
   async function getData() {
     const url = config.apiUrl + "/recipes";
     const bearer = "Bearer " + userToken;
@@ -54,7 +48,7 @@ const Recipe = (props) => {
     <Container className={props.classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
       <Grid container spacing={4}>
-        {loggedIn &&
+        {!_.isEmpty(responseObj) &&
           cards.map((card) => (
             <Grid item key={card} xs={3} sm={6} md={4}>
               <RecipeCard recipe={responseObj[card]} />
