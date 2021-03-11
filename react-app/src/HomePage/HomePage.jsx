@@ -9,6 +9,7 @@ import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import Recipe from "../components/Recipes/Recipe";
 import LoginMask from "../components/Login/Login";
+import { useSelector } from "react-redux";
 
 function Copyright() {
   return (
@@ -57,6 +58,7 @@ const useStyles = makeStyles((theme) => ({
 
 export function HomePage() {
   const classes = useStyles();
+  const loggedIn = useSelector((state) => state.authentication.loggedIn);
   return (
     <React.Fragment>
       <CssBaseline />
@@ -106,7 +108,7 @@ export function HomePage() {
             </div> */}
           </Container>
         </div>
-        <Recipe classes={classes}></Recipe>
+        {loggedIn && <Recipe classes={classes}></Recipe>}
       </main>
       {/* Footer */}
       <footer className={classes.footer}>
