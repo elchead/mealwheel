@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
@@ -42,8 +42,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function FavoriteButton(props) {
-  const [isSelected, setSelected] = React.useState(false);
+  const [isSelected, setSelected] = useState(false);
   const userId = useSelector((state) => state.authentication.user.id);
+  useEffect(() => {
+    async function fetchIsSaved(userId, recipe) {
+      const isSaved = await userService.isRecipeSaved(userId, recipe);
+      setSelected(isSaved);
+      console.log("Rec", recipe);
+    }
+    fetchIsSaved(userId, props.recipe);
+  }, []);
+
   function handleFavorite() {
     if (!isSelected) {
       userService.saveRecipe(userId, props.recipe);
@@ -67,7 +76,7 @@ function FavoriteButton(props) {
 
 export default function RecipeCard(props) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);

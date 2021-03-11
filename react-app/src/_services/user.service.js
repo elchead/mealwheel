@@ -11,6 +11,7 @@ export const userService = {
   delete: _delete,
   saveRecipe,
   deleteRecipe,
+  isRecipeSaved,
 };
 
 function login(username, password) {
@@ -130,6 +131,17 @@ function deleteRecipe(userId, recipe) {
   };
   return fetch(
     `${config.apiUrl}/users/${userId}/deleteRecipe/${recipe.id}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function isRecipeSaved(userId, recipe) {
+  const requestOptions = {
+    method: "POST",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+  };
+  return fetch(
+    `${config.apiUrl}/users/${userId}/checkRecipe/${recipe.id}`,
     requestOptions
   ).then(handleResponse);
 }
