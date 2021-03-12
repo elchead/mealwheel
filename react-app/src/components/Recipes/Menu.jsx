@@ -112,7 +112,7 @@ export function AddToPlan(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const weekdays = ["Mon", "Tue", "Wed", "Th", "Fri", "Sat", "Sun"];
+  const weekdays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -142,6 +142,10 @@ export function AddToPlan(props) {
 
     prevOpen.current = open;
   }, [open]);
+
+  function addRecipeToDay(day) {
+    console.log(day); // TODO add recipe to props, use central getData function to fetch data
+  }
 
   return (
     <div className={classes.root}>
@@ -178,7 +182,9 @@ export function AddToPlan(props) {
                     onKeyDown={handleListKeyDown}
                   >
                     {weekdays.map((day) => (
-                      <MenuItem onClick={handleClose}>{day}</MenuItem>
+                      <MenuItem onClick={() => addRecipeToDay(day)}>
+                        {day}
+                      </MenuItem>
                     ))}
                   </MenuList>
                 </ClickAwayListener>
