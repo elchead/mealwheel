@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { userService } from "../../_services/user.service";
 import { useSelector } from "react-redux";
+import Menu from "./Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,9 +92,10 @@ export default function RecipeCard(props) {
           </Avatar>
         }
         action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
+          <Menu />
+          // <IconButton aria-label="settings">
+          //   <MoreVertIcon />
+          // </IconButton>
         }
         title={props.recipe.name}
         subheader="September 14, 2016"
