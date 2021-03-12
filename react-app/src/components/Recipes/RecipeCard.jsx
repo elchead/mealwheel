@@ -17,7 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { userService } from "../../_services/user.service";
 import { useSelector } from "react-redux";
-import Menu from "./Menu";
+import Menu, { AddToPlan } from "./Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -114,9 +114,10 @@ export default function RecipeCard(props) {
           </CardContent>
           <CardActions disableSpacing>
             <FavoriteButton recipe={props.recipe} />
-            <IconButton aria-label="share">
+            {/* <IconButton aria-label="share">
               <ShareIcon />
-            </IconButton>
+            </IconButton> */}
+            <AddToPlan />
             <IconButton
               className={clsx(classes.expand, {
                 [classes.expandOpen]: expanded,
