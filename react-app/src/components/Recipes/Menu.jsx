@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuListComposition() {
+export default function MenuListComposition(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -93,7 +93,7 @@ export default function MenuListComposition() {
                       <TodayIcon />
                       Add to plan
                     </MenuItem>
-                    <MenuItem onClick={handleClose}>
+                    <MenuItem onClick={props.discard}>
                       <HighlightOffIcon />
                       Discard
                     </MenuItem>
