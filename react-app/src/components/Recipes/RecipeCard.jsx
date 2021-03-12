@@ -48,7 +48,6 @@ function FavoriteButton(props) {
     async function fetchIsSaved(userId, recipe) {
       const isSaved = await userService.isRecipeSaved(userId, recipe);
       setSelected(isSaved);
-      console.log("Rec", recipe);
     }
     fetchIsSaved(userId, props.recipe);
   }, []);
