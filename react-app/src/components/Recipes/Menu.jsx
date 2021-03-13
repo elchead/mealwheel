@@ -127,14 +127,16 @@ export function AddToPlan(props) {
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
-    const capitalize = (s) => {
-      if (typeof s !== "string") return "";
-      return s.charAt(0).toUpperCase() + s.slice(1);
+    const capitalizeWeekdays = (days) => {
+      const capitalize = (s) => {
+        if (typeof s !== "string") return "";
+        return s.charAt(0).toUpperCase() + s.slice(1);
+      };
+      return days.map((day) => capitalize(day));
     };
     userService
       .getDaysToBeUpdated(userId)
-      .then(({ days }) => setWeekdays(days.map((day) => capitalize(day))));
-    console.log(weekdays);
+      .then(({ days }) => setWeekdays(capitalizeWeekdays(days)));
   };
 
   const handleClose = (event) => {
@@ -164,7 +166,6 @@ export function AddToPlan(props) {
 
   function addRecipeToDay(day) {
     userService.updateWeekPlan(userId, day, props.recipe);
-    console.log(day); // TODO add recipe to props, use central getData function to fetch data
   }
 
   return (
@@ -200,8 +201,8 @@ export function AddToPlan(props) {
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
+                    onClick={handleClose}
                   >
-                    {console.log(weekdays)}
                     {weekdays.map((day) => (
                       <MenuItem onClick={() => addRecipeToDay(day)}>
                         {day}
