@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { userService } from "../../_services/user.service";
 import { useSelector } from "react-redux";
+import Menu, { AddToPlan } from "./Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,71 +77,77 @@ function FavoriteButton(props) {
 export default function RecipeCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
+  const [isVisible, setVisible] = useState(true);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
+  function discard(event) {
+    setVisible(false);
+  }
+
   return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
-        }
-        title={props.recipe.name}
-        subheader="September 14, 2016"
-      />
-      <CardMedia
-        className={classes.media}
-        image={props.recipe.img}
-        title={props.recipe.name}
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {props.recipe.description}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <FavoriteButton recipe={props.recipe} />
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-        </IconButton>
-      </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>
-            <b>Preparation time:</b> {props.recipe.minutes} min
-          </Typography>
-          <Typography paragraph>
-            <b>Steps</b>:
-          </Typography>
-          <Typography paragraph>
-            <ol>
-              {props.recipe.steps.map((i) => (
-                <li>{i}</li>
-              ))}
-            </ol>
-          </Typography>
-          <Typography paragraph>{props.recipe.Steps}</Typography>
-        </CardContent>
-      </Collapse>
-    </Card>
+    <>
+      {isVisible && (
+        <Card className={classes.root}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+                R
+              </Avatar>
+            }
+            action={<Menu discard={discard} />}
+            title={props.recipe.name}
+            subheader="September 14, 2016"
+          />
+          <CardMedia
+            className={classes.media}
+            image={props.recipe.img}
+            title={props.recipe.name}
+          />
+          <CardContent>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {props.recipe.description}
+            </Typography>
+          </CardContent>
+          <CardActions disableSpacing>
+            <FavoriteButton recipe={props.recipe} />
+            {/* <IconButton aria-label="share">
+              <ShareIcon />
+            </IconButton> */}
+            <AddToPlan recipe={props.recipe} />
+            <IconButton
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: expanded,
+              })}
+              onClick={handleExpandClick}
+              aria-expanded={expanded}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
+          <Collapse in={expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <Typography paragraph>
+                <b>Preparation time:</b> {props.recipe.minutes} min
+              </Typography>
+              <Typography paragraph>
+                <b>Steps</b>:
+              </Typography>
+              <Typography paragraph>
+                <ol>
+                  {props.recipe.steps.map((i) => (
+                    <li>{i}</li>
+                  ))}
+                </ol>
+              </Typography>
+              <Typography paragraph>{props.recipe.Steps}</Typography>
+            </CardContent>
+          </Collapse>
+        </Card>
+      )}
+    </>
   );
 }
