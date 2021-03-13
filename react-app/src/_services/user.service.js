@@ -12,6 +12,7 @@ export const userService = {
   saveRecipe,
   deleteRecipe,
   isRecipeSaved,
+  updateWeekPlan,
 };
 
 function login(username, password) {
@@ -142,6 +143,20 @@ function isRecipeSaved(userId, recipe) {
   };
   return fetch(
     `${config.apiUrl}/users/${userId}/checkRecipe/${recipe.id}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function updateWeekPlan(userId, day, recipe) {
+  const req = { recipe: recipe };
+  const requestOptions = {
+    method: "PUT",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify(req),
+  };
+  console.log(requestOptions);
+  return fetch(
+    `${config.apiUrl}/users/${userId}/weekPlan/${day.toLowerCase()}`,
     requestOptions
   ).then(handleResponse);
 }

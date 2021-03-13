@@ -11,6 +11,8 @@ import IconButton from "@material-ui/core/IconButton";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import TodayIcon from "@material-ui/icons/Today";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import { userService } from "../../_services/user.service";
+import { useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -113,6 +115,7 @@ export function AddToPlan(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
   const weekdays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+  const userId = useSelector((state) => state.authentication.user.id);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -144,6 +147,7 @@ export function AddToPlan(props) {
   }, [open]);
 
   function addRecipeToDay(day) {
+    userService.updateWeekPlan(userId, day, props.recipe);
     console.log(day); // TODO add recipe to props, use central getData function to fetch data
   }
 

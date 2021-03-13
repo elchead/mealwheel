@@ -117,7 +117,7 @@ export default function RecipeCard(props) {
             {/* <IconButton aria-label="share">
               <ShareIcon />
             </IconButton> */}
-            <AddToPlan />
+            <AddToPlan recipe={props.recipe} />
             <IconButton
               className={clsx(classes.expand, {
                 [classes.expandOpen]: expanded,
