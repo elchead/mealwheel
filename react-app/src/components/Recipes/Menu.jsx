@@ -91,10 +91,10 @@ export default function MenuListComposition(props) {
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    <MenuItem onClick={handleClose}>
+                    {/* <MenuItem onClick={handleClose}>
                       <TodayIcon />
                       Add to plan
-                    </MenuItem>
+                    </MenuItem> */}
                     <MenuItem onClick={props.discard}>
                       <HighlightOffIcon />
                       Discard
@@ -114,11 +114,27 @@ export function AddToPlan(props) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
-  const weekdays = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"];
+  const [weekdays, setWeekdays] = React.useState([
+    "Mo",
+    "Tu",
+    "We",
+    "Th",
+    "Fr",
+    "Sa",
+    "Su",
+  ]);
   const userId = useSelector((state) => state.authentication.user.id);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
+    const capitalize = (s) => {
+      if (typeof s !== "string") return "";
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    };
+    userService
+      .getDaysToBeUpdated(userId)
+      .then(({ days }) => setWeekdays(days.map((day) => capitalize(day))));
+    console.log(weekdays);
   };
 
   const handleClose = (event) => {
@@ -185,6 +201,7 @@ export function AddToPlan(props) {
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
+                    {console.log(weekdays)}
                     {weekdays.map((day) => (
                       <MenuItem onClick={() => addRecipeToDay(day)}>
                         {day}
