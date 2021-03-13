@@ -12,6 +12,8 @@ export const userService = {
   saveRecipe,
   deleteRecipe,
   isRecipeSaved,
+  updateWeekPlan,
+  getDaysToBeUpdated,
 };
 
 function login(username, password) {
@@ -94,7 +96,7 @@ function _delete(id) {
 function handleResponse(response) {
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
-    console.log(response);
+    // console.log(response);
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
@@ -105,7 +107,7 @@ function handleResponse(response) {
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
-
+    // console.log("DATA", data);
     return data;
   });
 }
@@ -142,6 +144,31 @@ function isRecipeSaved(userId, recipe) {
   };
   return fetch(
     `${config.apiUrl}/users/${userId}/checkRecipe/${recipe.id}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function updateWeekPlan(userId, day, recipe) {
+  const req = { recipe: recipe };
+  const requestOptions = {
+    method: "PUT",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify(req),
+  };
+  console.log(requestOptions);
+  return fetch(
+    `${config.apiUrl}/users/${userId}/weekPlan/${day.toLowerCase()}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function getDaysToBeUpdated(userId) {
+  const requestOptions = {
+    method: "GET",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+  };
+  return fetch(
+    `${config.apiUrl}/users/${userId}/daysToBeUpdated`,
     requestOptions
   ).then(handleResponse);
 }
