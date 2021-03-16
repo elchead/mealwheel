@@ -66,7 +66,7 @@ export function HomePage() {
         <Toolbar>
           {/* <CameraIcon className={classes.icon} /> */}
           <Typography variant="h6" align="center" color="inherit" noWrap>
-            MealWheel
+            MealWheel 
           </Typography>
           <LoginMask />
         </Toolbar>
@@ -129,3 +129,5 @@ export function HomePage() {
     </React.Fragment>
   );
 }
+
+export default HomePage

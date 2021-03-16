@@ -6,10 +6,16 @@ import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { App } from "./App/App";
 
+// Multiple Pages React
+import {BrowserRouter} from "react-router-dom";
+
 ReactDOM.render(
+  
   <React.StrictMode>
     <Provider store={store}>
+    <BrowserRouter>
       <App />
+    </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")

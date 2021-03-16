@@ -9,6 +9,10 @@ import { HomePage } from "../HomePage";
 import { LoginPage } from "../LoginPage";
 import SignUp from "../SignUpPage/SignUp";
 
+import RecipesPage from "../RecipesPage/RecipesPage";
+import { Link } from "react-router-dom";
+import NavBar from "../components/NavBar";
+
 function App() {
   const alert = useSelector((state) => state.alert);
   const dispatch = useDispatch();
@@ -21,25 +25,29 @@ function App() {
   });
 
   return (
-    <div className="jumbotron">
-      <div className="container">
-        <div className="col-md-8 offset-md-2">
-          {alert.message && (
-            <div className={`alert ${alert.type}`}>{alert.message}</div>
-          )}
-          <Router history={history}>
-            <Route exact path="/" component={HomePage} />
-            <Route path="/register" component={SignUp} />
-            {/* <Route path="/login" component={LoginPage} /> */}
-            {/* <Switch>
-              <PrivateRoute exact path="/" component={HomePage} />
-              <Route path="/login" component={LoginPage} />
-              <Route path="/register" component={RegisterPage} />
-              <Redirect from="*" to="/" />
-            </Switch> */}
-          </Router>
+    <div className="App"> 
+      <NavBar/>
+      <Route exact path="/RecipesPage" component={RecipesPage}/>
+        <div className="jumbotron">
+          <div className="container">
+            <div className="col-md-8 offset-md-2">
+              {alert.message && (
+                <div className={`alert ${alert.type}`}>{alert.message}</div>
+              )}
+            <Router history={history}>
+                <Route exact path="/" component={HomePage} />
+                <Route path="/register" component={SignUp} />
+                {/* <Route path="/login" component={LoginPage} /> */}
+                {/* <Switch>
+                  <PrivateRoute exact path="/" component={HomePage} />
+                  <Route path="/login" component={LoginPage} />
+                  <Route path="/register" component={RegisterPage} />
+                  <Redirect from="*" to="/" />
+                </Switch> */}
+              </Router>
+            </div>
+          </div>
         </div>
-      </div>
     </div>
   );
 }
