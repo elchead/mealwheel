@@ -1,0 +1,14 @@
+path = "../../mealwheel-data/"
+link= pd.read_csv("" + path+ "/RAW_recipes.csv", sep=",")
+
+recommendations["InDf1"]=recommendations["recipe_id"].isin(link["id"]).astype(int)
+recommendations
+
+link["InDf2"]=link["id"].isin(recommendations["recipe_id"]).astype(int)
+link.head()
+
+link["name"][link["InDf2"] == 1]
+
+recommendations["recipe_id"] = link["name"][link["InDf2"] == 1].values
+recommendations
+
