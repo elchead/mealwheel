@@ -6,11 +6,13 @@ import recipe_img from "../../images/recipe_s.jpg";
 import config from "../../config";
 import RecipeCard from "./RecipeCard";
 import { useDispatch, useSelector } from "react-redux";
+import FloatingActionButtons from "../Button/FloatingButton";
 var _ = require("underscore");
 
 const Recipe = (props) => {
   let [responseObj, setResponseObj] = useState([]);
   let [cards, setCards] = useState([0, 1, 2]);
+  let [addedCards, setAddedCards] = useState([]);
   const userToken = useSelector((state) =>
     state.authentication.loggedIn ? state.authentication.user.token : undefined
   );
@@ -44,17 +46,31 @@ const Recipe = (props) => {
       throw new Error("API is not available");
     }
   }
+  function addOwnCard(event) {
+    console.log("click");
+    let counter = 0;
+    if (!_.isEmpty(addedCards)) {
+      counter = addedCards[addedCards.length - 1] + 1;
+    }
+    setAddedCards([...addedCards, counter]);
+  }
   return (
     <Container className={props.classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
-      <Grid container spacing={4}>
+      <Grid container spacing={4} direction="column" alignItems="center">
         {!_.isEmpty(responseObj) &&
           cards.map((card) => (
-            <Grid item key={card} xs={3} sm={6} md={4}>
+            <Grid item key={card} xs={12} sm={6} md={4}>
               <RecipeCard recipe={responseObj[card]} />
             </Grid>
           ))}
+        {addedCards.map((card) => (
+          <Grid item key={card} xs={12} sm={6} md={4}>
+            <RecipeCard recipe={responseObj[card]} />
+          </Grid>
+        ))}
       </Grid>
+      <FloatingActionButtons onClick={addOwnCard} />
     </Container>
   );
 };
