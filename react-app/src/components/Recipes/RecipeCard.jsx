@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import Menu, { AddToPlan } from "./Menu";
 import TextField from "@material-ui/core/TextField";
 import Button from "../Button/Button";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
@@ -172,9 +173,9 @@ export function RecipeCardForm(props) {
               </Avatar>
             }
             action={<Menu discard={discard} />}
-            title={
-              <TextField multiline name="name" label="Recipe title"></TextField>
-            }
+            // title={
+            //   <TextField multiline name="name" label="Recipe title"></TextField>
+            // }
             // subheader="September 14, 2016"
           />
           {/* <CardMedia
@@ -189,37 +190,111 @@ export function RecipeCardForm(props) {
           </CardContent>
           <CardActions disableSpacing>
             <CardContent>
-              <form className={classes.root} noValidate autoComplete="off">
-                <TextField
-                  id="prep"
-                  label="Preparation time: (min)"
-                  type="number"
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-                <TextField
-                  id="ingredients"
-                  label="Ingredients:"
-                  multiline
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-                <TextField
-                  id="steps"
-                  label="Steps:"
-                  multiline
-                  InputLabelProps={{
-                    shrink: true,
-                  }}
-                />
-              </form>
-              <Button text="Save" onClick={props.saveHandle} />
+              <RecipeForm />
             </CardContent>
           </CardActions>
         </Card>
       )}
     </>
+  );
+}
+
+function RecipeForm() {
+  const classes = useStyles();
+  const [name, setName] = useState("");
+  const [prepTime, setPrepTime] = useState(0);
+  const [ingredients, setIngredients] = useState([]);
+  const [steps, setSteps] = useState("");
+  const [description, setDescription] = useState("");
+  const userId = useSelector((state) => state.authentication.user.id);
+  const userToken = useSelector((state) =>
+    state.authentication.loggedIn ? state.authentication.user.token : undefined
+  );
+
+  function saveRecipe(recipe) {
+    userService.saveRecipe(userId, recipe).catch((err) => console.error(err));
+  }
+  function changePrepTime(event) {
+    setPrepTime(event.target.value);
+  }
+
+  function changeIngredients(event) {
+    setIngredients(event.target.value);
+  }
+
+  function changeSteps(event) {
+    setSteps(event.target.value);
+  }
+
+  function changeDescription(event) {
+    setDescription(event.target.value);
+  }
+
+  function changeName(event) {
+    setName(event.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    saveRecipe({
+      name: name,
+      steps: steps,
+      minutes: prepTime,
+      description: description,
+    });
+  }
+  return (
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleSubmit}
+    >
+      <TextField
+        name="name"
+        label="Recipe title"
+        onChange={changeName}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      ></TextField>
+      <TextField
+        id="description"
+        label="Description:"
+        multiline
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={changeDescription}
+      />
+      <TextField
+        id="prep"
+        label="Preparation time: (min)"
+        type="number"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={changePrepTime}
+      />
+      <TextField
+        id="ingredients"
+        label="Ingredients:"
+        multiline
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={changeIngredients}
+      />
+      <TextField
+        id="steps"
+        label="Steps:"
+        multiline
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={changeSteps}
+      />
+      <Button type="submit" text="Save" />
+    </form>
   );
 }

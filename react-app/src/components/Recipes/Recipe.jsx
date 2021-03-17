@@ -54,12 +54,6 @@ const Recipe = (props) => {
     }
     setAddedCards([...addedCards, counter]);
   }
-  function saveRecipe(event) {
-    // console.log("save");
-    // call API method
-    // render as normal recipe: 1)
-    // message that saved under favorites
-  }
   return (
     <Container className={props.classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
@@ -72,7 +66,7 @@ const Recipe = (props) => {
           ))}
         {addedCards.map((card) => (
           <Grid item key={card} xs={12} sm={6} md={4}>
-            <RecipeCardForm saveHandle={saveRecipe} />
+            <RecipeCardForm />
           </Grid>
         ))}
       </Grid>
