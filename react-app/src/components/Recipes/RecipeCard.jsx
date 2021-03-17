@@ -234,6 +234,9 @@ function RecipeForm() {
     setName(event.target.value);
   }
 
+  const uid = function () {
+    return parseInt(Date.now() - 100 * Math.random());
+  };
   function handleSubmit(e) {
     e.preventDefault();
     saveRecipe({
@@ -241,6 +244,7 @@ function RecipeForm() {
       steps: steps,
       minutes: prepTime,
       description: description,
+      id: uid(),
     });
   }
   return (
