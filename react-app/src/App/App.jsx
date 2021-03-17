@@ -28,6 +28,7 @@ function App() {
     <div className="App"> 
       <NavBar/>
       <Route exact path="/RecipesPage" component={RecipesPage}/>
+      <Route exact path="/" component={HomePage} />
         <div className="jumbotron">
           <div className="container">
             <div className="col-md-8 offset-md-2">
@@ -35,7 +36,7 @@ function App() {
                 <div className={`alert ${alert.type}`}>{alert.message}</div>
               )}
             <Router history={history}>
-                <Route exact path="/" component={HomePage} />
+                
                 <Route path="/register" component={SignUp} />
                 {/* <Route path="/login" component={LoginPage} /> */}
                 {/* <Switch>
