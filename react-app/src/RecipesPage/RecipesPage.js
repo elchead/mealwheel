@@ -1,13 +1,20 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
+import Header from "./Header";
+import Content from "./Content";
 
 function RecipesPage() {
     return (
         <Grid container direction="column">
-            <Grid item> Header </Grid>
+            <Grid item>
+                <Header/> 
+            </Grid>
             <Grid item container>
-                <Grid xs=12 sm=6></Grid>
-             Content of the Page 
+                <Grid item xs={false} sm={2}/>
+                <Grid item xs={12} sm={8}>
+                    <Content/>
+                </Grid>
+                <Grid item xs={false} sm={2}/>
              </Grid>
         </Grid>
     );  
