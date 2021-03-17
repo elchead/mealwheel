@@ -4,7 +4,7 @@ import Container from "@material-ui/core/Container";
 import { useState, useEffect } from "react";
 import recipe_img from "../../images/recipe_s.jpg";
 import config from "../../config";
-import RecipeCard from "./RecipeCard";
+import RecipeCard, { RecipeCardForm } from "./RecipeCard";
 import { useDispatch, useSelector } from "react-redux";
 import FloatingActionButtons from "../Button/FloatingButton";
 var _ = require("underscore");
@@ -47,12 +47,18 @@ const Recipe = (props) => {
     }
   }
   function addOwnCard(event) {
-    console.log("click");
+    // console.log("click");
     let counter = 0;
     if (!_.isEmpty(addedCards)) {
       counter = addedCards[addedCards.length - 1] + 1;
     }
     setAddedCards([...addedCards, counter]);
+  }
+  function saveRecipe(event) {
+    // console.log("save");
+    // call API method
+    // render as normal recipe: 1)
+    // message that saved under favorites
   }
   return (
     <Container className={props.classes.cardGrid} maxWidth="md">
@@ -66,7 +72,7 @@ const Recipe = (props) => {
           ))}
         {addedCards.map((card) => (
           <Grid item key={card} xs={12} sm={6} md={4}>
-            <RecipeCard recipe={responseObj[card]} />
+            <RecipeCardForm saveHandle={saveRecipe} />
           </Grid>
         ))}
       </Grid>

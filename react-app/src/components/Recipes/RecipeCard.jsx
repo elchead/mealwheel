@@ -18,10 +18,15 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { userService } from "../../_services/user.service";
 import { useSelector } from "react-redux";
 import Menu, { AddToPlan } from "./Menu";
-
+import TextField from "@material-ui/core/TextField";
+import Button from "../Button/Button";
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
   },
   media: {
     height: 0,
@@ -142,6 +147,77 @@ export default function RecipeCard(props) {
               <Typography paragraph>{props.recipe.Steps}</Typography>
             </CardContent>
           </Collapse>
+        </Card>
+      )}
+    </>
+  );
+}
+
+export function RecipeCardForm(props) {
+  const classes = useStyles();
+  const [isVisible, setVisible] = useState(true);
+
+  function discard(event) {
+    setVisible(false);
+  }
+
+  return (
+    <>
+      {isVisible && (
+        <Card className={classes.root}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+                R
+              </Avatar>
+            }
+            action={<Menu discard={discard} />}
+            title={
+              <TextField multiline name="name" label="Recipe title"></TextField>
+            }
+            // subheader="September 14, 2016"
+          />
+          {/* <CardMedia
+            className={classes.media}
+            image={props.recipe.img}
+            title={props.recipe.name}
+          /> */}
+          <CardContent>
+            {/* <Typography variant="body2" color="textSecondary" component="p">
+              {props.recipe.description}
+            </Typography> */}
+          </CardContent>
+          <CardActions disableSpacing>
+            <CardContent>
+              <form className={classes.root} noValidate autoComplete="off">
+                <TextField
+                  id="prep"
+                  label="Preparation time: (min)"
+                  type="number"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <TextField
+                  id="ingredients"
+                  label="Ingredients:"
+                  multiline
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+                <TextField
+                  id="steps"
+                  label="Steps:"
+                  multiline
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                />
+              </form>
+              <Button text="Save" onClick={props.saveHandle} />
+            </CardContent>
+          </CardActions>
         </Card>
       )}
     </>
