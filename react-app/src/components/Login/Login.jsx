@@ -31,6 +31,7 @@ export function LoginField(props) {
         }}
         name="username"
         text="Username"
+        variant="filled"
         onChange={props.onChange}
       />
       <TextField
@@ -41,6 +42,7 @@ export function LoginField(props) {
         type="password"
         onChange={props.onChange}
         text="Password"
+        variant="filled"
       />
     </>
   );
