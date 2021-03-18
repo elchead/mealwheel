@@ -190,7 +190,7 @@ export function RecipeCardForm(props) {
           </CardContent>
           <CardActions disableSpacing>
             <CardContent>
-              <RecipeForm />
+              <RecipeForm hideForm={props.hideOverlay} />
             </CardContent>
           </CardActions>
         </Card>
@@ -199,7 +199,7 @@ export function RecipeCardForm(props) {
   );
 }
 
-function RecipeForm() {
+function RecipeForm(props) {
   const classes = useStyles();
   const [name, setName] = useState("");
   const [prepTime, setPrepTime] = useState(0);
@@ -207,9 +207,6 @@ function RecipeForm() {
   const [steps, setSteps] = useState("");
   const [description, setDescription] = useState("");
   const userId = useSelector((state) => state.authentication.user.id);
-  const userToken = useSelector((state) =>
-    state.authentication.loggedIn ? state.authentication.user.token : undefined
-  );
 
   function saveRecipe(recipe) {
     userService.saveRecipe(userId, recipe).catch((err) => console.error(err));
@@ -237,15 +234,18 @@ function RecipeForm() {
   const uid = function () {
     return parseInt(Date.now() - 100 * Math.random());
   };
+
   function handleSubmit(e) {
     e.preventDefault();
     saveRecipe({
       name: name,
       steps: steps,
       minutes: prepTime,
+      ingredients: ingredients,
       description: description,
       id: uid(),
     });
+    props.hideForm();
   }
   return (
     <form

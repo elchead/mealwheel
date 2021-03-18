@@ -13,6 +13,7 @@ const Recipe = (props) => {
   let [responseObj, setResponseObj] = useState([]);
   let [cards, setCards] = useState([0, 1, 2]);
   let [addedCards, setAddedCards] = useState([]);
+  let [showForm, setShowForm] = useState(false);
   const userToken = useSelector((state) =>
     state.authentication.loggedIn ? state.authentication.user.token : undefined
   );
@@ -53,6 +54,13 @@ const Recipe = (props) => {
       counter = addedCards[addedCards.length - 1] + 1;
     }
     setAddedCards([...addedCards, counter]);
+    setShowForm(true);
+  }
+  function hideForm() {
+    setShowForm(false);
+    const cards = [...addedCards];
+    cards.pop();
+    setAddedCards(cards);
   }
   return (
     <Container className={props.classes.cardGrid} maxWidth="md">
@@ -66,7 +74,7 @@ const Recipe = (props) => {
           ))}
         {addedCards.map((card) => (
           <Grid item key={card} xs={12} sm={6} md={4}>
-            <RecipeCardForm />
+            {showForm && <RecipeCardForm hideOverlay={hideForm} />}
           </Grid>
         ))}
       </Grid>
