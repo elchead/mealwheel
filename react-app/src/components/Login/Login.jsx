@@ -4,22 +4,22 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import MuiDialogTitle from '@material-ui/core/DialogTitle';
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import { Checkbox, FormControlLabel } from "@material-ui/core";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import HomeIcon from "@material-ui/icons/Home";
-import CloseIcon from '@material-ui/icons/Close';
-import Grid from '@material-ui/core/Grid';
-import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from "@material-ui/icons/Close";
+import Grid from "@material-ui/core/Grid";
+import IconButton from "@material-ui/core/IconButton";
 import TextField from "../TextField/TextField";
 
 import { userActions } from "../../_actions";
-import "./Form.css"
+import "./Form.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,28 +37,28 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    color: '#000',
+    color: "#000",
   },
   btn: {
-    background: 'linear-gradient(45deg, #16ffa6 30%, #00ca77 90%)',
+    background: "linear-gradient(45deg, #16ffa6 30%, #00ca77 90%)",
     border: 0,
     borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-    color: 'white',
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    color: "white",
     height: 48,
     width: "35ch",
-    padding: '0 30px',
+    padding: "0 30px",
   },
   forgotPassword: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
-    color: '#00ca77',
+    color: "#00ca77",
     cursor: "pointer",
     "&:enabled:hover": {
-      color: '#16ffa6',
+      color: "#16ffa6",
     },
     "&:enabled:focus": {
-      color: '#16ffa6',
+      color: "#16ffa6",
     },
   },
   formControlLabel: {
@@ -66,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: '#16ffa6',
+    backgroundColor: "#16ffa6",
   },
   paper: {
     marginTop: theme.spacing(6),
@@ -78,23 +78,23 @@ const useStyles = makeStyles((theme) => ({
   },
   menubtn: {
     marginTop: theme.spacing(5),
-  }
+  },
 }));
 
-  const styles = (theme) => ({
-    root: {
-      margin: 0,
-      padding: theme.spacing(2),
-    },
-    closeButton: {
-      position: 'absolute',
-      right: theme.spacing(1),
-      top: theme.spacing(1),
-      color: theme.palette.grey[500],
-    },
-    Text: {
-      color: "black",
-    },
+const styles = (theme) => ({
+  root: {
+    margin: 0,
+    padding: theme.spacing(2),
+  },
+  closeButton: {
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
+    color: theme.palette.grey[500],
+  },
+  Text: {
+    color: "black",
+  },
 });
 
 const DialogTitle = withStyles(styles)((props) => {
@@ -103,7 +103,11 @@ const DialogTitle = withStyles(styles)((props) => {
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
       <Typography variant="h6">{children}</Typography>
       {onClose ? (
-        <IconButton aria-label="close" className={classes.closeButton} onClick={onClose}>
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
           <CloseIcon />
         </IconButton>
       ) : null}
@@ -156,12 +160,7 @@ export default function LoginMask() {
   return (
     <>
       {!isLoggedIn ? (
-        <form
-          noValidate
-          autoComplete="off"
-          onSubmit={handleSubmit}
-        >
-
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
           <Grid container justify="center" spacing={1}>
             <Grid item>
               <IconButton color="secondary">
@@ -170,26 +169,33 @@ export default function LoginMask() {
             </Grid>
 
             <Grid item className={classes.rootbtns}>
-              <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleClickOpen}
+              >
                 Login
               </Button>
             </Grid>
 
             <Grid item className={classes.rootbtns}>
-              <RegisterButton/>
+              <RegisterButton />
             </Grid>
-          
           </Grid>
 
-          <Dialog open={open} onClose={handleClose} aria-labelledby="customized-dialog-title">
+          <Dialog
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="customized-dialog-title"
+          >
             <DialogTitle id="customized-dialog-title" onClose={handleClose}>
               Login
             </DialogTitle>
 
             <DialogContent>
-              <div className='form-inputs'>
-                <label className='form-label'>Username</label>
-                  <TextField
+              <div className="form-inputs">
+                <label className="form-label">Username</label>
+                <TextField
                   id="username"
                   className="form-input"
                   name="username"
@@ -197,15 +203,15 @@ export default function LoginMask() {
                   text="Enter your username"
                   fullWidth
                   onChange={handleInput}
-                  />
-                  {submitted && !username && (
-                    <div className="invalid-feedback">Username is required</div>
-                  )}
+                />
+                {submitted && !username && (
+                  <div className="invalid-feedback">Username is required</div>
+                )}
               </div>
 
-              <div className='form-inputs'>
-                <label className='form-label'>Password</label>
-                  <TextField
+              <div className="form-inputs">
+                <label className="form-label">Password</label>
+                <TextField
                   className="form-input"
                   name="password"
                   type="password"
@@ -213,18 +219,18 @@ export default function LoginMask() {
                   id="password"
                   fullWidth
                   onChange={handleInput}
-                  />
-                  {submitted && !password && (
-                    <div className="invalid-feedback">Password is required</div>
-                  )}
+                />
+                {submitted && !password && (
+                  <div className="invalid-feedback">Password is required</div>
+                )}
               </div>
 
-              <FormControlLabel
-              className={classes.formControlLabel}
-              control={<Checkbox color='primary' />}
-              label={<Typography variant="body1">Remember me</Typography>}
-              />
-          
+              {/* <FormControlLabel
+                className={classes.formControlLabel}
+                control={<Checkbox color="primary" />}
+                label={<Typography variant="body1">Remember me</Typography>}
+              /> */}
+
               {isLoggedIn && (
                 <span className="spinner-border spinner-border-sm mr-1"></span>
               )}
@@ -233,35 +239,48 @@ export default function LoginMask() {
             <DialogActions>
               <Grid container justify="center">
                 <Grid item>
-                  <Button onClick={handleSubmit} color="primary" type="submit" form="myform" className={classes.btn}>
+                  <Button
+                    onClick={handleSubmit}
+                    color="primary"
+                    type="submit"
+                    form="myform"
+                    className={classes.btn}
+                  >
                     Log In
                   </Button>
                 </Grid>
               </Grid>
             </DialogActions>
 
-            <Typography align="center"
+            {/* <Typography
+              align="center"
               className={classes.forgotPassword}
-              role="button">
-                Forgot Your Password?
-            </Typography>
+              role="button"
+            >
+              Forgot Your Password?
+            </Typography> */}
           </Dialog>
         </form>
-        
       ) : (
         <>
-        <Grid container justify="center" spacing={3}>
-          <Grid item>
-            <Button variant="contained" color="primary" type="button"
-              text={isLoggedIn ? "Logout" : "Login"}
-              onClick={handleLogout}> Log Out
-            </Button>
-          </Grid>
+          <Grid container justify="center" spacing={3}>
+            <Grid item>
+              <Button
+                variant="contained"
+                color="primary"
+                type="button"
+                text={isLoggedIn ? "Logout" : "Login"}
+                onClick={handleLogout}
+              >
+                {" "}
+                Log Out
+              </Button>
+            </Grid>
 
-          <Grid item className={classes.rootbtns}>
-            <Typography>Welcome back, {username}</Typography>
+            <Grid item className={classes.rootbtns}>
+              <Typography>Welcome back, {username}</Typography>
+            </Grid>
           </Grid>
-        </Grid>
         </>
       )}
     </>
@@ -296,7 +315,7 @@ function RegisterButton() {
       dispatch(userActions.register(user));
     }
   }
-  
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -308,16 +327,16 @@ function RegisterButton() {
   };
 
   return (
-    <form
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    >
+    <form noValidate autoComplete="off" onSubmit={handleSubmit}>
       <Button variant="contained" color="secondary" onClick={handleClickOpen}>
         Sign Up
       </Button>
-          
-      <Dialog open={open} onClose={handleClose} aria-labelledby="customized-dialog-title">
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="customized-dialog-title"
+      >
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
@@ -331,52 +350,52 @@ function RegisterButton() {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                autoComplete="fname"
-                name="firstName"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                text="First name"
-                autoFocus
-                onChange={handleChange}
+                  autoComplete="fname"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  text="First name"
+                  autoFocus
+                  onChange={handleChange}
                 />
               </Grid>
 
-                {submitted && !user.firstName && (
-                  <div className="invalid-feedback">First name is required</div>
-                )}
-              
+              {submitted && !user.firstName && (
+                <div className="invalid-feedback">First name is required</div>
+              )}
+
               <Grid item xs={12} sm={6}>
                 <TextField
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                text="Last name"
-                autoComplete="lname"
-                onChange={handleChange}
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  text="Last name"
+                  autoComplete="lname"
+                  onChange={handleChange}
                 />
               </Grid>
-                {submitted && !user.lastName && (
-                  <div className="invalid-feedback">Last name is required</div>
-                )}
+              {submitted && !user.lastName && (
+                <div className="invalid-feedback">Last name is required</div>
+              )}
 
               <Grid item xs={12} sm={12}>
                 <TextField
-                required
-                fullWidth
-                id="username"
-                label="Username"
-                name="username"
-                text="Username"
-                autoComplete="lname"
-                onChange={handleChange}
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  name="username"
+                  text="Username"
+                  autoComplete="lname"
+                  onChange={handleChange}
                 />
               </Grid>
 
-            {/* <Grid item xs={12}>
+              {/* <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -390,49 +409,54 @@ function RegisterButton() {
 
               <Grid item xs={12}>
                 <TextField
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                text="Password"
-                autoComplete="current-password"
-                onChange={handleChange}
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  text="Password"
+                  autoComplete="current-password"
+                  onChange={handleChange}
                 />
               </Grid>
-                {submitted && !user.password && (
-                  <div className="invalid-feedback">Password is required</div>
-                )}
+              {submitted && !user.password && (
+                <div className="invalid-feedback">Password is required</div>
+              )}
 
-            {/* <Grid item xs={12}>
+              {/* <Grid item xs={12}>
               <FormControlLabel
                 control={<Checkbox value="allowExtraEmails" color="primary" />}
                 label="I want to receive inspiration, marketing promotions and updates via email."
               />
             </Grid> */}
-
-          </Grid>
-
+            </Grid>
           </DialogContent>
 
           <DialogActions>
             <Grid container justify="center">
               <Grid item>
-                <Button onClick={handleSubmit} color="primary" type="submit" className={classes.btn}>
+                <Button
+                  onClick={handleSubmit}
+                  color="primary"
+                  type="submit"
+                  className={classes.btn}
+                >
                   Sign Up
                 </Button>
               </Grid>
             </Grid>
           </DialogActions>
 
-          <Typography align="center"
+          <Typography
+            align="center"
             className={classes.forgotPassword}
-            role="button">
-              Already have an account? Sign in
+            role="button"
+          >
+            Already have an account? Sign in
           </Typography>
-      </div>   
-    </Dialog>
-  </form>
+        </div>
+      </Dialog>
+    </form>
   );
 }

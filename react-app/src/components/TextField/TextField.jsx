@@ -14,10 +14,9 @@ const useStyles = makeStyles((theme) => ({
 export default function TextField(props) {
   return (
     <BasicTextFields
-      {...props}
       // id="standard-basic" // TODO no id?
       label={props.text}
-      variant="outlined"
+      {...props}
     />
   );
 }
