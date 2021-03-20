@@ -65,16 +65,24 @@ const Recipe = (props) => {
   return (
     <Container className={props.classes.cardGrid} maxWidth="md">
       {/* End hero unit */}
-      <Grid container spacing={4} direction="column" alignItems="center">
+      <Grid container direction="row">
         {!_.isEmpty(responseObj) &&
           cards.map((card) => (
-            <Grid item key={card} xs={12} sm={6} md={4}>
-              <RecipeCard recipe={responseObj[card]} />
+            <Grid item container>
+              <Grid item xs={false} sm={2} />
+              <Grid item key={card} xs={12} sm={8}>
+                <RecipeCard recipe={responseObj[card]} />
+              </Grid>
+              <Grid item xs={false} sm={2} />
             </Grid>
           ))}
         {addedCards.map((card) => (
-          <Grid item key={card} xs={12} sm={6} md={4}>
-            {showForm && <RecipeCardForm hideOverlay={hideForm} />}
+          <Grid item container>
+            <Grid item xs={false} sm={2} />
+            <Grid item key={card} xs={12} sm={8}>
+              {showForm && <RecipeCardForm hideOverlay={hideForm} />}
+            </Grid>
+            <Grid item xs={false} sm={2} />
           </Grid>
         ))}
       </Grid>
