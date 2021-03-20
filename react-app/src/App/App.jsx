@@ -54,6 +54,7 @@ function App() {
             </div>
             <Route exact path="/" component={HomePage} />
             <Route path="/register" component={SignUp} />
+            <Route path="/recipes" component={RecipesPage} />
             {/*<Route path="/login" component={LoginPage} />*/}
             {/* <Switch>
               <PrivateRoute exact path="/" component={HomePage} />

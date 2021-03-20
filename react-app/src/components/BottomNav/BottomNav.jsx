@@ -7,7 +7,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
-
+import { Link } from "react-router-dom";
 const useStyles = makeStyles({
   root: {
     width: 500,
@@ -29,6 +29,8 @@ export default function SimpleBottomNavigation() {
       <BottomNavigationAction label="Inspiration" icon={<EmojiObjectsIcon />} />
       <BottomNavigationAction
         label="Favorites"
+        component={Link}
+        to="/recipes"
         icon={<FavoriteIcon color="secondary" />}
       />
       <BottomNavigationAction label="My Profile" icon={<PermIdentityIcon />} />
