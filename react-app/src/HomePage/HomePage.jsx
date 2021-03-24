@@ -8,8 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
 import Recipe from "../components/Recipes/Recipe";
-import LoginMask from "../components/Login/Login";
-import Footer from "../images/wave.svg";
 
 function Copyright() {
   return (
@@ -54,6 +52,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "20px",
     bottom: 0,
+    backgroundColor: "#fff"
   },
 }));
 
