@@ -18,7 +18,7 @@ import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from "../TextField/TextField";
 import Hidden from '@material-ui/core/Hidden';
-import Link from '@material-ui/core/Link';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { userActions } from "../../_actions";
 import "./Form.css"
@@ -159,7 +159,7 @@ export default function LoginMask() {
 
           <Grid container justify="flex-end" spacing={1} direction="row" alignItems="center">
             <Grid item xs={6} sm={3}>
-              <IconButton color="secondary">
+              <IconButton color="secondary" component={RouterLink} to="/">
                 <HomeIcon />
               </IconButton>
             </Grid>
@@ -170,7 +170,7 @@ export default function LoginMask() {
               </Button>
             </Grid>
 
-            <Hidden only="xs">
+            <Hidden only={['xs', 'sm']}>
             <Grid item className={classes.rootbtns} sm={5}>
               <RegisterButton/>
             </Grid>
@@ -384,7 +384,8 @@ export function RegisterButton() {
                 onChange={handleChange}
                 />
               </Grid>
-
+              
+            
             {/* <Grid item xs={12}>
               <TextField
                 variant="outlined"

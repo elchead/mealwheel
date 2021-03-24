@@ -1,33 +1,11 @@
+import { AppBar, Toolbar, Typography, makeStyles, Button, IconButton, Drawer, Link, MenuItem } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
+import Grid from '@material-ui/core/Grid';
+import Hidden from '@material-ui/core/Hidden';
+
 import LoginMask from "../components/Login/Login";
+import RegisterButton from "../components/Login/Register";
 import "../index.css";
-
-import {
-    AppBar,
-    Toolbar,
-    Typography,
-    makeStyles,
-    Button,
-    IconButton,
-    Drawer,
-    Link,
-    MenuItem,
-  } from "@material-ui/core";
-  import MenuIcon from "@material-ui/icons/Menu";
-  import React, { useState, useEffect } from "react";
-  import { Link as RouterLink } from "react-router-dom";
-  import Grid from '@material-ui/core/Grid';
-  import Hidden from '@material-ui/core/Hidden';
-
-  const headersData = [
-    {
-      label: "Sign Up",
-      onClick: "/register",
-    },
-    {
-      label: "Login",
-      onClick: "/login",
-    },
-  ];
 
 const font =  "'Julius Sans One', sans-serif";
 
@@ -62,8 +40,7 @@ const useStyles = makeStyles((theme) => ({
       "@media (max-width: 900px)": {
         marginRight: 0,
         marginLeft: 15,
-  },
-
+      },
   },
   menuButton: {
     fontFamily: "Open Sans, sans-serif",
@@ -75,20 +52,18 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
   },
-  drawerContainer: {
-    padding: "20px 30px",
-  },
   title: {
     fontFamily: "Julius Sans One, sans-serif",
   },
   text: {
     fontFamily: "Cambria",
     color: "black",
+    marginBottom: 40,
   }
 }));
 
 export default function Header() {
-const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
+const { header, logo, toolbar } = useStyles();
 
 const [state, setState] = useState({
     mobileView: false,
@@ -122,56 +97,16 @@ const [state, setState] = useState({
 
     return (
       <Toolbar>
-        <div>
-         {/* <IconButton
-          {...{
-            edge: "start",
-            color: "black",
-            "aria-label": "menu",
-            "aria-haspopup": "true",
-            onClick: handleDrawerOpen,
-          }}
-        >
-            <MenuIcon />
-          </IconButton> */}
-        </div>
         <Grid container spacing={1}>
-            <Grid item xs={12}>
+          <Grid item xs={12}>
         <div>{MealWheelLogo}</div>
-            </Grid>
+          </Grid>
         </Grid>
-        <LoginMask/>
-       {/* <Drawer
-          {...{
-            anchor: "left",
-            open: drawerOpen,
-            onClose: handleDrawerClose,
-          }}
-        >
-          <div className={drawerContainer}>{getDrawerChoices()}</div>
-        </Drawer> */}
-        
+
+        <LoginMask/>      
       </Toolbar>
     );
   };
-
-  {/* const getDrawerChoices = () => {
-    return headersData.map(({ label, onClick }) => {
-      return (
-        <Link
-          {...{
-            component: RouterLink,
-            to: onClick,
-            color: "inherit",
-            style: { textDecoration: "none" },
-            key: label,
-          }}
-        >
-          <MenuItem>{label}</MenuItem>
-        </Link>
-      );
-    });
-  };} */}
 
   const MealWheelLogo = (
     <Typography variant="h6" align="center" color="inherit" noWrap className={logo}>
@@ -190,7 +125,7 @@ const [state, setState] = useState({
       <div>
       <Grid container direction="column">
         <Grid item>
-        <Hidden only="xs">
+        <Hidden only={['xs', 'sm']}>
       <Typography
               className={classes.title}
               component="h1"
@@ -205,7 +140,7 @@ const [state, setState] = useState({
             </Grid>
 
             <Grid item>
-            <Hidden only="xs">
+            <Hidden only={['xs', 'sm']}>
             <Typography
               className={classes.text}
               variant="h5"
@@ -216,10 +151,20 @@ const [state, setState] = useState({
               The meal planner to save you time and reduce waste
             </Typography>
             </Hidden>
+            
+            </Grid>
+
+            
+            <Grid container justify="center">
+            <Hidden only={['xs', 'sm']}>
+              <Grid item>
+                <RegisterButton/>
+              </Grid>
+              </Hidden>
             </Grid>
 
             <Grid item>
-        <Hidden only="lg">
+        <Hidden only={['md','lg', 'xl']}>
       <Typography
               className={classes.title}
               component="h1"
@@ -234,7 +179,7 @@ const [state, setState] = useState({
             </Grid>
 
             <Grid item>
-            <Hidden only="lg">
+            <Hidden only={['md','lg', 'xl']}>
             <Typography
               className={classes.text}
               variant="h7"
@@ -248,6 +193,14 @@ const [state, setState] = useState({
             </Grid>
 
           </Grid>
+
+          <Grid container>
+            <Hidden only={['md','lg', 'xl']}>
+              <Grid item>
+                <RegisterButton/>
+              </Grid>
+              </Hidden>
+            </Grid>
       </div>
       </div>
     </header>

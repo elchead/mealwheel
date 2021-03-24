@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     paddingBottom: "10ch",
+    backgroundColor: "#fff",
 
       "@media (max-width: 767px)": {
         backgroundImage: `url(${MobileImage})`,
