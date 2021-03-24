@@ -13,6 +13,10 @@ import RecipesPage from "../RecipesPage/RecipesPage";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 
+/*import BottomNavigation from "@material-ui/core/BottomNavigation";
+import SimpleBottomNavigation from "../components/BottomNav";
+import BottomNav from "../components/BottomNav/BottomNav";*/
+
 function App() {
   const alert = useSelector((state) => state.alert);
   const dispatch = useDispatch();
@@ -24,11 +28,17 @@ function App() {
     });
   });
 
+
+  /*  Add under <div className="App"
+   <NavBar/>
+  <Route exact path="/RecipesPage" component={RecipesPage}/>
+  <Route exact path="/" component={BottomNav} />*/
+
   return (
     <div className="App"> 
-      <NavBar/>
-      <Route exact path="/RecipesPage" component={RecipesPage}/>
-      <Route exact path="/" component={HomePage} />
+    <NavBar/>
+  <Route exact path="/RecipesPage" component={RecipesPage}/>
+  <Route exact path="/" component={HomePage} />
         <div className="jumbotron">
           <div className="container">
             <div className="col-md-8 offset-md-2">
@@ -36,7 +46,6 @@ function App() {
                 <div className={`alert ${alert.type}`}>{alert.message}</div>
               )}
             <Router history={history}>
-                
                 <Route path="/register" component={SignUp} />
                 {/* <Route path="/login" component={LoginPage} /> */}
                 {/* <Switch>
