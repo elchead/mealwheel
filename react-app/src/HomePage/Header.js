@@ -15,6 +15,8 @@ import {
   import MenuIcon from "@material-ui/icons/Menu";
   import React, { useState, useEffect } from "react";
   import { Link as RouterLink } from "react-router-dom";
+  import Grid from '@material-ui/core/Grid';
+  import Hidden from '@material-ui/core/Hidden';
 
   const headersData = [
     {
@@ -36,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     flexDirection: "column",
     marginLeft: "15ch",
+      "@media (max-width: 900px)": {
+        marginLeft: 50,
+        marginRight: 200,
+    },
     height: "100vh",
     fontFamily: font,
   },
@@ -52,7 +58,12 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     color: "#000",
     textAlign: "left",
-    marginRight: "3ch"
+    marginRight: "3ch",
+      "@media (max-width: 900px)": {
+        marginRight: 0,
+        marginLeft: 15,
+  },
+
   },
   menuButton: {
     fontFamily: "Open Sans, sans-serif",
@@ -112,7 +123,7 @@ const [state, setState] = useState({
     return (
       <Toolbar>
         <div>
-          <IconButton
+         {/* <IconButton
           {...{
             edge: "start",
             color: "black",
@@ -122,12 +133,15 @@ const [state, setState] = useState({
           }}
         >
             <MenuIcon />
-          </IconButton>
+          </IconButton> */}
         </div>
-
+        <Grid container spacing={1}>
+            <Grid item xs={12}>
         <div>{MealWheelLogo}</div>
-
-        <Drawer
+            </Grid>
+        </Grid>
+        <LoginMask/>
+       {/* <Drawer
           {...{
             anchor: "left",
             open: drawerOpen,
@@ -135,12 +149,13 @@ const [state, setState] = useState({
           }}
         >
           <div className={drawerContainer}>{getDrawerChoices()}</div>
-        </Drawer>
+        </Drawer> */}
+        
       </Toolbar>
     );
   };
 
-  const getDrawerChoices = () => {
+  {/* const getDrawerChoices = () => {
     return headersData.map(({ label, onClick }) => {
       return (
         <Link
@@ -156,7 +171,7 @@ const [state, setState] = useState({
         </Link>
       );
     });
-  };
+  };} */}
 
   const MealWheelLogo = (
     <Typography variant="h6" align="center" color="inherit" noWrap className={logo}>
@@ -173,6 +188,9 @@ const [state, setState] = useState({
         {mobileView ? displayMobile() : displayDesktop()}
       </AppBar>
       <div>
+      <Grid container direction="column">
+        <Grid item>
+        <Hidden only="xs">
       <Typography
               className={classes.title}
               component="h1"
@@ -183,6 +201,11 @@ const [state, setState] = useState({
             >
               Mealwheel
             </Typography>
+            </Hidden>
+            </Grid>
+
+            <Grid item>
+            <Hidden only="xs">
             <Typography
               className={classes.text}
               variant="h5"
@@ -192,6 +215,39 @@ const [state, setState] = useState({
             >
               The meal planner to save you time and reduce waste
             </Typography>
+            </Hidden>
+            </Grid>
+
+            <Grid item>
+        <Hidden only="lg">
+      <Typography
+              className={classes.title}
+              component="h1"
+              variant="h4"
+              align="left"
+              color="textPrimary"
+              gutterBottom
+            >
+              Mealwheel
+            </Typography>
+            </Hidden>
+            </Grid>
+
+            <Grid item>
+            <Hidden only="lg">
+            <Typography
+              className={classes.text}
+              variant="h7"
+              align="left"
+              color="textSecondary"
+              paragraph
+            >
+              The meal planner to save you time and reduce waste
+            </Typography>
+            </Hidden>
+            </Grid>
+
+          </Grid>
       </div>
       </div>
     </header>

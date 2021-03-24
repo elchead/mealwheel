@@ -17,6 +17,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Grid from '@material-ui/core/Grid';
 import IconButton from '@material-ui/core/IconButton';
 import TextField from "../TextField/TextField";
+import Hidden from '@material-ui/core/Hidden';
+import Link from '@material-ui/core/Link';
 
 import { userActions } from "../../_actions";
 import "./Form.css"
@@ -53,13 +55,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
     color: '#00ca77',
-    cursor: "pointer",
-    "&:enabled:hover": {
-      color: '#16ffa6',
-    },
-    "&:enabled:focus": {
-      color: '#16ffa6',
-    },
   },
   formControlLabel: {
     marginRight: 0,
@@ -162,22 +157,24 @@ export default function LoginMask() {
           onSubmit={handleSubmit}
         >
 
-          <Grid container justify="center" spacing={1}>
-            <Grid item>
+          <Grid container justify="flex-end" spacing={1} direction="row" alignItems="center">
+            <Grid item xs={6} sm={3}>
               <IconButton color="secondary">
                 <HomeIcon />
               </IconButton>
             </Grid>
 
-            <Grid item className={classes.rootbtns}>
+            <Grid item className={classes.rootbtns} xs={1} sm={4}>
               <Button variant="contained" color="secondary" onClick={handleClickOpen}>
                 Login
               </Button>
             </Grid>
 
-            <Grid item className={classes.rootbtns}>
+            <Hidden only="xs">
+            <Grid item className={classes.rootbtns} sm={5}>
               <RegisterButton/>
             </Grid>
+            </Hidden>
           
           </Grid>
 
@@ -237,13 +234,25 @@ export default function LoginMask() {
                     Log In
                   </Button>
                 </Grid>
+          
               </Grid>
             </DialogActions>
 
             <Typography align="center"
               className={classes.forgotPassword}
+              >
+                Don't have an account yet?
+            </Typography>
+            <Grid container justify="center">
+              <Grid item>
+                <RegisterButton/>
+              </Grid>
+            </Grid>
+
+            <Typography align="center"
+              className={classes.forgotPassword}
               role="button">
-                Forgot Your Password?
+                
             </Typography>
           </Dialog>
         </form>
@@ -268,7 +277,7 @@ export default function LoginMask() {
   );
 }
 
-function RegisterButton() {
+export function RegisterButton() {
   const classes = useStyles();
   const [user, setUser] = useState({
     firstName: "",
@@ -313,7 +322,7 @@ function RegisterButton() {
       autoComplete="off"
       onSubmit={handleSubmit}
     >
-      <Button variant="contained" color="secondary" onClick={handleClickOpen}>
+      <Button variant="contained" color="secondary" onClick={handleClickOpen} justify="center">
         Sign Up
       </Button>
           
@@ -429,7 +438,6 @@ function RegisterButton() {
           <Typography align="center"
             className={classes.forgotPassword}
             role="button">
-              Already have an account? Sign in
           </Typography>
       </div>   
     </Dialog>

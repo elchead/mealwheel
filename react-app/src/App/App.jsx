@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Header from "../HomePage/Header";
 
 import BackgroundImage from "../images/small.png";
+import MobileImage from "../images/tryout.png";
 import { CssBaseline } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +23,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     paddingBottom: "10ch",
+
+      "@media (max-width: 767px)": {
+        backgroundImage: `url(${MobileImage})`,
+        paddingBottom: 0,
+      },
   },
 }));
 
