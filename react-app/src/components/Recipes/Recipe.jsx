@@ -11,7 +11,7 @@ var _ = require("underscore");
 
 const Recipe = (props) => {
   let [responseObj, setResponseObj] = useState([]);
-  let [cards, setCards] = useState([0, 1, 2]);
+  let [cards, setCards] = useState([]);
   let [addedCards, setAddedCards] = useState([]);
   let [showForm, setShowForm] = useState(false);
   const userToken = useSelector((state) =>
@@ -23,6 +23,7 @@ const Recipe = (props) => {
       .then((data) => {
         data.map((card) => (card.img = recipe_img));
         setResponseObj(data);
+        setCards([...Array(data.length).keys()]);
       })
       .catch((err) => {
         console.error(err);
