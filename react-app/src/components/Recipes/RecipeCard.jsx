@@ -69,7 +69,11 @@ function FavoriteButton(props) {
   }
   return (
     <>
-      <IconButton aria-label="add to favorites" onClick={handleFavorite}>
+      <IconButton
+        aria-label="add to favorites"
+        onClick={handleFavorite}
+        color={isSelected ? "primary" : undefined}
+      >
         <FavoriteIcon />
       </IconButton>
     </>
