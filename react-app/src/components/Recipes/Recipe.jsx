@@ -18,7 +18,6 @@ const Recipe = (props) => {
     state.authentication.loggedIn ? state.authentication.user.token : undefined
   );
   useEffect(() => {
-    console.log(props);
     props
       .getData()
       .then((data) => {
