@@ -9,7 +9,6 @@ import Link from "@material-ui/core/Link";
 import Recipe from "../components/Recipes/Recipe";
 import { useSelector } from "react-redux";
 // import Footer from "../images/wave.svg";
-import { getRecipes } from "../_helpers/api";
 import BottomNavigation from "../components/BottomNav/BottomNav";
 import Footer from "../HomePage/Footer";
 import LoginHeader from "../HomePage/LoginHeader";
@@ -17,7 +16,7 @@ import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-
+import { getRecipes } from "../_helpers/api";
 import Layout from "../components/Layout";
 
 function Copyright() {
@@ -75,7 +74,7 @@ export function HomePage() {
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
   return (
     <>
-      {!loggedIn && <Layout />}
+      {/* {!loggedIn && <Layout />} */}
 
       {loggedIn && <LoginHeader />}
 
@@ -149,11 +148,11 @@ export function HomePage() {
           </div>
         )}
 
-        {loggedIn && <Recipe classes={classes}></Recipe>}
+        {loggedIn && <Recipe classes={classes} getData={getRecipes}></Recipe>}
       </main>
 
       {/* Footer */}
-      {loggedIn && <BottomNavigation align="center" gutterBottom />}
+      {/* {loggedIn && <BottomNavigation align="center" gutterBottom />} */}
 
       {!loggedIn && <Footer />}
 

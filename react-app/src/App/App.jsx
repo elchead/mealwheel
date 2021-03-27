@@ -13,7 +13,8 @@ import { Link } from "react-router-dom";
 import BottomNavigation from "../components/BottomNav/BottomNav";
 import Container from "@material-ui/core/Container";
 import NavBar from "../components/NavBar";
-
+import LoginHeader from "../HomePage/LoginHeader";
+import Layout from "../components/Layout";
 function App() {
   const alert = useSelector((state) => state.alert);
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
@@ -33,6 +34,8 @@ function App() {
           {alert.message && (
             <div className={`alert ${alert.type}`}>{alert.message}</div>
           )}
+          {!loggedIn && <Layout />}
+          {loggedIn && <LoginHeader />}
           <Router history={history}>
             <Route exact path="/" component={HomePage} />
             <Route path="/register" component={SignUp} />
@@ -44,9 +47,11 @@ function App() {
               <Route path="/register" component={RegisterPage} />
               <Redirect from="*" to="/" />
             </Switch> */}
-            <Container>
-              {loggedIn && <BottomNavigation gutterBottom />}
-            </Container>
+            <footer>
+              <Container>
+                {loggedIn && <BottomNavigation gutterBottom />}
+              </Container>
+            </footer>
           </Router>
         </div>
       </div>
