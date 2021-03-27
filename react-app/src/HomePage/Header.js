@@ -2,32 +2,32 @@ import LoginMask from "../components/Login/Login";
 import "../index.css";
 
 import {
-    AppBar,
-    Toolbar,
-    Typography,
-    makeStyles,
-    Button,
-    IconButton,
-    Drawer,
-    Link,
-    MenuItem,
-  } from "@material-ui/core";
-  import MenuIcon from "@material-ui/icons/Menu";
-  import React, { useState, useEffect } from "react";
-  import { Link as RouterLink } from "react-router-dom";
+  AppBar,
+  Toolbar,
+  Typography,
+  makeStyles,
+  Button,
+  IconButton,
+  Drawer,
+  Link,
+  MenuItem,
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import React, { useState, useEffect } from "react";
+import { Link as RouterLink } from "react-router-dom";
 
-  const headersData = [
-    {
-      label: "Sign Up",
-      onClick: "/register",
-    },
-    {
-      label: "Login",
-      onClick: "/login",
-    },
-  ];
+const headersData = [
+  {
+    label: "Sign Up",
+    onClick: "/register",
+  },
+  {
+    label: "Login",
+    onClick: "/login",
+  },
+];
 
-const font =  "'Julius Sans One', sans-serif";
+const font = "'Julius Sans One', sans-serif";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,11 +40,11 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: font,
   },
   header: {
-    background: 'none',
+    background: "none",
     paddingRight: "79px",
     paddingLeft: "80px",
-      "@media (max-width: 900px)": {
-        paddingLeft: 0,
+    "@media (max-width: 900px)": {
+      paddingLeft: 0,
     },
   },
   logo: {
@@ -52,7 +52,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     color: "#000",
     textAlign: "left",
-    marginRight: "3ch"
+    marginRight: "3ch",
   },
   menuButton: {
     fontFamily: "Open Sans, sans-serif",
@@ -73,21 +73,21 @@ const useStyles = makeStyles((theme) => ({
   text: {
     fontFamily: "Cambria",
     color: "black",
-  }
+  },
 }));
 
 export default function Header() {
-const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
+  const { header, logo, menuButton, toolbar, drawerContainer } = useStyles();
 
-const [state, setState] = useState({
+  const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
   });
-    const { mobileView, drawerOpen } = state;
-  
+  const { mobileView, drawerOpen } = state;
+
   useEffect(() => {
     const setResponsiveness = () => {
-      return window.innerWidth < 900
+      return window.innerWidth < 1 // disable mobile version
         ? setState((prevState) => ({ ...prevState, mobileView: true }))
         : setState((prevState) => ({ ...prevState, mobileView: false }));
     };
@@ -96,16 +96,19 @@ const [state, setState] = useState({
   }, []);
 
   const displayDesktop = () => {
-    return <Toolbar className={toolbar}>{MealWheelLogo}
-      <div>
-        <LoginMask/>
-      </div>
-    </Toolbar>;
+    return (
+      <Toolbar className={toolbar}>
+        {MealWheelLogo}
+        <div>
+          <LoginMask />
+        </div>
+      </Toolbar>
+    );
   };
 
   const displayMobile = () => {
     const handleDrawerOpen = () =>
-    setState((prevState) => ({ ...prevState, drawerOpen: true }));
+      setState((prevState) => ({ ...prevState, drawerOpen: true }));
     const handleDrawerClose = () =>
       setState((prevState) => ({ ...prevState, drawerOpen: false }));
 
@@ -113,14 +116,14 @@ const [state, setState] = useState({
       <Toolbar>
         <div>
           <IconButton
-          {...{
-            edge: "start",
-            color: "black",
-            "aria-label": "menu",
-            "aria-haspopup": "true",
-            onClick: handleDrawerOpen,
-          }}
-        >
+            {...{
+              edge: "start",
+              color: "black",
+              "aria-label": "menu",
+              "aria-haspopup": "true",
+              onClick: handleDrawerOpen,
+            }}
+          >
             <MenuIcon />
           </IconButton>
         </div>
@@ -159,8 +162,14 @@ const [state, setState] = useState({
   };
 
   const MealWheelLogo = (
-    <Typography variant="h6" align="center" color="inherit" noWrap className={logo}>
-        MealWheel
+    <Typography
+      variant="h6"
+      align="center"
+      color="inherit"
+      noWrap
+      className={logo}
+    >
+      MealWheel
     </Typography>
   );
 
@@ -169,32 +178,31 @@ const [state, setState] = useState({
   return (
     <header>
       <div className={classes.root}>
-      <AppBar className={header} elevation={0}>
-        {mobileView ? displayMobile() : displayDesktop()}
-      </AppBar>
-      <div>
-      <Typography
-              className={classes.title}
-              component="h1"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              Mealwheel
-            </Typography>
-            <Typography
-              className={classes.text}
-              variant="h5"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              The meal planner to save you time and reduce waste
-            </Typography>
-      </div>
+        <AppBar className={header} elevation={0}>
+          {mobileView ? displayMobile() : displayDesktop()}
+        </AppBar>
+        <div>
+          <Typography
+            className={classes.title}
+            component="h1"
+            variant="h2"
+            align="center"
+            color="textPrimary"
+            gutterBottom
+          >
+            Mealwheel
+          </Typography>
+          <Typography
+            className={classes.text}
+            variant="h5"
+            align="center"
+            color="textSecondary"
+            paragraph
+          >
+            The meal planner to save you time and reduce waste
+          </Typography>
+        </div>
       </div>
     </header>
-
   );
 }
