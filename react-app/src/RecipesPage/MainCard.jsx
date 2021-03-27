@@ -27,7 +27,7 @@ const useStyles = makeStyles({
 
 const MainCard = (props) => {
   const classes = useStyles();
-  const { avatarSrc, title, subtitle, description, imgSrc } = props;
+  // const { avatarSrc, title, subtitle, description, imgSrc } = props;
   const userId = useSelector((state) => state.authentication.user.id);
   //Avatar: where you can source the meals
 
