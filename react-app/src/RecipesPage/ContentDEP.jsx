@@ -20,7 +20,9 @@ const useStyles = makeStyles({
   },
 });
 const Content = () => {
-  const userId = useSelector((state) => state.authentication.user.id);
+  const userId = useSelector((state) =>
+    state.authentication.user ? state.authentication.user.id : undefined
+  );
   const classes = useStyles();
   const getRecipesDataCard = (RecipesDataObj) => {
     const {

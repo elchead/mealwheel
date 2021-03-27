@@ -17,7 +17,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "../TextField/TextField";
-
+import { Link } from "react-router-dom";
 import { userActions } from "../../_actions";
 import "./Form.css";
 
@@ -271,6 +271,8 @@ export default function LoginMask() {
                 type="button"
                 text={isLoggedIn ? "Logout" : "Login"}
                 onClick={handleLogout}
+                component={Link}
+                to="/"
               >
                 {" "}
                 Log Out
