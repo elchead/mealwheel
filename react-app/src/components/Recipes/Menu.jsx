@@ -60,7 +60,7 @@ export default function MenuListComposition(props) {
   return (
     <div className={classes.root}>
       <div>
-        <IconButton
+        {/* <IconButton
           aria-label="settings"
           ref={anchorRef}
           aria-controls={open ? "menu-list-grow" : undefined}
@@ -91,10 +91,11 @@ export default function MenuListComposition(props) {
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
                   >
-                    {/* <MenuItem onClick={handleClose}>
+                    <MenuItem onClick={handleClose}>
                       <TodayIcon />
                       Add to plan
-                    </MenuItem> */}
+                    </MenuItem>
+
                     <MenuItem onClick={props.discard}>
                       <HighlightOffIcon />
                       Discard
@@ -104,7 +105,10 @@ export default function MenuListComposition(props) {
               </Paper>
             </Grow>
           )}
-        </Popper>
+        </Popper> */}
+        <IconButton aria-label="add to favorites" onClick={props.discard}>
+          <HighlightOffIcon />
+        </IconButton>
       </div>
     </div>
   );
