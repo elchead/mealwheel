@@ -17,6 +17,7 @@ export default function TextField(props) {
       // id="standard-basic" // TODO no id?
       label={props.text}
       {...props}
+      variant="outlined"
     />
   );
 }

@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    color: "#000",
+    color: "#fff",
   },
   btn: {
     background: "linear-gradient(45deg, #16ffa6 30%, #00ca77 90%)",
@@ -106,7 +106,7 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
-export default function LoginMask() {
+export default function LoggedIn() {
   const classes = useStyles();
   const [submitted, setSubmitted] = useState(false);
   const [inputs, setInputs] = useState({
@@ -263,11 +263,11 @@ export default function LoginMask() {
         </form>
       ) : (
         <>
-          <Grid container justify="center" spacing={3}>
-            <Grid item>
+          <Grid container justify="flex-end" spacing={1} direction="row" alignItems="center">
+            <Grid item xs={8} sm={8}>
               <Button
                 variant="contained"
-                color="primary"
+                color="secondary"
                 type="button"
                 text={isLoggedIn ? "Logout" : "Login"}
                 onClick={handleLogout}
@@ -277,8 +277,8 @@ export default function LoginMask() {
               </Button>
             </Grid>
 
-            <Grid item className={classes.rootbtns}>
-              <Typography>Welcome back, {username}</Typography>
+            <Grid item className={classes.rootbtns} xs={4} sm={4}>
+              <Typography>Welcome {username}</Typography>
             </Grid>
           </Grid>
         </>
@@ -332,7 +332,7 @@ export function RegisterButton() {
       autoComplete="off"
       onSubmit={handleSubmit}
     >
-      <Button variant="contained" color="primary" onClick={handleClickOpen} justify="center">
+      <Button variant="contained" color="secondary" onClick={handleClickOpen} justify="center">
         Sign Up
       </Button>
 
