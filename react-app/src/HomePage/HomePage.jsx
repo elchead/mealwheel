@@ -10,7 +10,6 @@ import Link from "@material-ui/core/Link";
 import Recipe from "../components/Recipes/Recipe";
 import LoginMask from "../components/Login/Login";
 import { useSelector } from "react-redux";
-import BottomNavigation from "../components/BottomNav/BottomNav";
 import Footer from "../images/wave.svg";
 
 function Copyright() {
@@ -122,7 +121,7 @@ export function HomePage() {
         </Typography>
         <Copyright /> */}
       </footer>
-      {loggedIn && <BottomNavigation align="center" gutterBottom />}
+
       {/* End footer */}
     </React.Fragment>
   );

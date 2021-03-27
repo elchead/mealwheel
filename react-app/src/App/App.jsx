@@ -11,10 +11,11 @@ import SignUp from "../SignUpPage/SignUp";
 
 import RecipesPage from "../RecipesPage/RecipesPage";
 import { Link } from "react-router-dom";
+import BottomNavigation from "../components/BottomNav/BottomNav";
+import Container from "@material-ui/core/Container";
 import NavBar from "../components/NavBar";
 import { makeStyles } from "@material-ui/core/styles";
 import Header from "../HomePage/Header";
-
 import BackgroundImage from "../images/small.png";
 import { CssBaseline } from "@material-ui/core";
 
@@ -31,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   const alert = useSelector((state) => state.alert);
+  const loggedIn = useSelector((state) => state.authentication.loggedIn);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -62,6 +64,9 @@ function App() {
               <Route path="/register" component={RegisterPage} />
               <Redirect from="*" to="/" />
             </Switch> */}
+            <Container>
+              {loggedIn && <BottomNavigation align="center" gutterBottom />}
+            </Container>
           </Router>
         </div>
       </div>

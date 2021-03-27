@@ -9,9 +9,7 @@ import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import { Link } from "react-router-dom";
 const useStyles = makeStyles({
-  root: {
-    width: 500,
-  },
+  root: {},
 });
 
 export default function SimpleBottomNavigation() {
