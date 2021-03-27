@@ -9,6 +9,11 @@ export const userService = {
   getById,
   update,
   delete: _delete,
+  saveRecipe,
+  deleteRecipe,
+  isRecipeSaved,
+  updateWeekPlan,
+  getDaysToBeUpdated,
 };
 
 function login(username, password) {
@@ -101,7 +106,68 @@ function handleResponse(response) {
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
-
+    // console.log("DATA", data);
     return data;
   });
+}
+
+function saveRecipe(userId, recipe) {
+  const req = { recipe: recipe };
+  const requestOptions = {
+    method: "POST",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify(req),
+  };
+
+  return fetch(
+    `${config.apiUrl}/users/${userId}/saveRecipe`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function deleteRecipe(userId, recipe) {
+  const requestOptions = {
+    method: "POST",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+  };
+  return fetch(
+    `${config.apiUrl}/users/${userId}/deleteRecipe/${recipe.id}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function isRecipeSaved(userId, recipe) {
+  const requestOptions = {
+    method: "POST",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+  };
+  return fetch(
+    `${config.apiUrl}/users/${userId}/checkRecipe/${recipe.id}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function updateWeekPlan(userId, day, recipe) {
+  const req = { recipe: recipe };
+  const requestOptions = {
+    method: "PUT",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+    body: JSON.stringify(req),
+  };
+  console.log(requestOptions);
+  return fetch(
+    `${config.apiUrl}/users/${userId}/weekPlan/${day.toLowerCase()}`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function getDaysToBeUpdated(userId) {
+  const requestOptions = {
+    method: "GET",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+  };
+  return fetch(
+    `${config.apiUrl}/users/${userId}/daysToBeUpdated`,
+    requestOptions
+  ).then(handleResponse);
 }

@@ -10,26 +10,25 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
 const theme = createMuiTheme({
   palette: {
-     primary: {
-        main: "#00fb8d",
-        contrastText: "#fff"
-               },
-     secondary: {
-        main: "#16FFA6",
-        contrastText: "#fff"
-                }
-           },
+    primary: {
+      main: "#00fb8d",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#16FFA6",
+      contrastText: "#fff",
+    },
+  },
 });
-
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-    <Router>
-    <ThemeProvider theme={theme}>
-      <App />
-    </ThemeProvider>
-    </Router>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
