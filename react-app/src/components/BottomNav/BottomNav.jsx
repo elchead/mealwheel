@@ -34,7 +34,7 @@ export default function SimpleBottomNavigation() {
         label="Favorites"
         component={Link}
         to="/recipes"
-        icon={<FavoriteIcon color="secondary" />}
+        icon={<FavoriteIcon color="primary" />}
       />
       <BottomNavigationAction label="My Profile" icon={<PermIdentityIcon />} />
     </BottomNavigation>
