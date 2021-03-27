@@ -11,6 +11,7 @@ import Recipe from "../components/Recipes/Recipe";
 import LoginMask from "../components/Login/Login";
 import { useSelector } from "react-redux";
 import Footer from "../images/wave.svg";
+import { getRecipes } from "../_helpers/api";
 
 function Copyright() {
   return (
@@ -103,7 +104,7 @@ export function HomePage() {
             </div> */}
           </Container>
         </div>
-        {loggedIn && <Recipe classes={classes} endpoint="recipes"></Recipe>}
+        {loggedIn && <Recipe classes={classes} getData={getRecipes}></Recipe>}
       </main>
       {/* Footer */}
 

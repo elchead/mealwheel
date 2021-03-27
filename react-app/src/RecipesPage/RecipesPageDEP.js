@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import Header from "./Header";
-import Content from "./ContentDEP";
+import Content from "./Content";
 
 function RecipesPage() {
   return (

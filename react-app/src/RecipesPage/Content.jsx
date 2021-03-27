@@ -1,11 +1,11 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
-import MainCard from "./MainCard";
-import RecipesDataList from "./RecipesDataDEP";
+// import MainCard from "./MainCard";
+// import RecipesDataList from "./RecipesDataDEP";
 import Recipe from "../components/Recipes/Recipe";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { userService } from "../_services";
 const useStyles = makeStyles({
   bullet: {
     display: "inline-block",
@@ -24,23 +24,26 @@ const Content = () => {
     state.authentication.user ? state.authentication.user.id : undefined
   );
   const classes = useStyles();
-  const getRecipesDataCard = (RecipesDataObj) => {
-    const {
-      title,
-      subtitle,
-      description,
-      avatarUrl,
-      imageUrl,
-    } = RecipesDataObj;
-    return (
-      <Grid item xs={12} sm={4}>
-        <MainCard {...RecipesDataObj} />
-      </Grid>
-    );
-  };
+  // const getRecipesDataCard = (RecipesDataObj) => {
+  //   const {
+  //     title,
+  //     subtitle,
+  //     description,
+  //     avatarUrl,
+  //     imageUrl,
+  //   } = RecipesDataObj;
+  //   return (
+  //     <Grid item xs={12} sm={4}>
+  //       <MainCard {...RecipesDataObj} />
+  //     </Grid>
+  //   );
+  // };
 
   return (
-    <Recipe classes={classes} endpoint={"users/" + userId + "/favRecipes"} />
+    <Recipe
+      classes={classes}
+      getData={() => userService.getFavoriteRecipes(userId)}
+    ></Recipe>
   );
 };
 

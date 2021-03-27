@@ -14,6 +14,7 @@ export const userService = {
   isRecipeSaved,
   updateWeekPlan,
   getDaysToBeUpdated,
+  getFavoriteRecipes,
 };
 
 function login(username, password) {
@@ -168,6 +169,17 @@ function getDaysToBeUpdated(userId) {
   };
   return fetch(
     `${config.apiUrl}/users/${userId}/daysToBeUpdated`,
+    requestOptions
+  ).then(handleResponse);
+}
+
+function getFavoriteRecipes(userId) {
+  const requestOptions = {
+    method: "GET",
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+  };
+  return fetch(
+    `${config.apiUrl}/users/${userId}/favRecipes`,
     requestOptions
   ).then(handleResponse);
 }

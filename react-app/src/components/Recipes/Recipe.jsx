@@ -18,7 +18,9 @@ const Recipe = (props) => {
     state.authentication.loggedIn ? state.authentication.user.token : undefined
   );
   useEffect(() => {
-    getData(props.endpoint)
+    console.log(props);
+    props
+      .getData()
       .then((data) => {
         data.map((card) => (card.img = recipe_img));
         setResponseObj(data);
@@ -27,25 +29,25 @@ const Recipe = (props) => {
         console.error(err);
       });
   }, []);
-  async function getData(endpoint = "recipes") {
-    const url = config.apiUrl + "/" + endpoint;
-    const bearer = "Bearer " + userToken;
-    try {
-      const res = await fetch(url, {
-        method: "GET",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization: bearer,
-          "Content-Type": "application/json",
-        },
-      });
-      const recipes = await res.json();
-      return recipes;
-    } catch (err) {
-      throw new Error("API is not available");
-    }
-  }
+  // async function getData(endpoint = "recipes") {
+  //   const url = config.apiUrl + "/" + endpoint;
+  //   const bearer = "Bearer " + userToken;
+  //   try {
+  //     const res = await fetch(url, {
+  //       method: "GET",
+  //       withCredentials: true,
+  //       credentials: "include",
+  //       headers: {
+  //         Authorization: bearer,
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+  //     const recipes = await res.json();
+  //     return recipes;
+  //   } catch (err) {
+  //     throw new Error("API is not available");
+  //   }
+  // }
   function addOwnCard(event) {
     // console.log("click");
     let counter = 0;
