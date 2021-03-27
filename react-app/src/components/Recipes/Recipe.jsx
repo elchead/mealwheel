@@ -18,18 +18,17 @@ const Recipe = (props) => {
     state.authentication.loggedIn ? state.authentication.user.token : undefined
   );
   useEffect(() => {
-    getData()
+    getData(props.endpoint)
       .then((data) => {
         data.map((card) => (card.img = recipe_img));
-        // data.img = recipe_img;
         setResponseObj(data);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
-  async function getData() {
-    const url = config.apiUrl + "/recipes";
+  async function getData(endpoint = "recipes") {
+    const url = config.apiUrl + "/" + endpoint;
     const bearer = "Bearer " + userToken;
     try {
       const res = await fetch(url, {

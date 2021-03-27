@@ -103,7 +103,7 @@ export function HomePage() {
             </div> */}
           </Container>
         </div>
-        {loggedIn && <Recipe classes={classes}></Recipe>}
+        {loggedIn && <Recipe classes={classes} endpoint="recipes"></Recipe>}
       </main>
       {/* Footer */}
 
