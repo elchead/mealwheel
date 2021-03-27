@@ -9,7 +9,7 @@ import { HomePage } from "../HomePage";
 import { LoginPage } from "../LoginPage";
 import SignUp from "../SignUpPage/SignUp";
 
-import RecipesPage from "../RecipesPage/RecipesPage";
+import RecipesPage from "../RecipesPage/RecipesPageDEP";
 import { Link } from "react-router-dom";
 import BottomNavigation from "../components/BottomNav/BottomNav";
 import Container from "@material-ui/core/Container";

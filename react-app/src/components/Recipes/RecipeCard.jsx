@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import Menu, { AddToPlan } from "./Menu";
 import TextField from "@material-ui/core/TextField";
 import Button from "../Button/Button";
+import { deleteRecipe } from "../../_helpers/api";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,7 +70,11 @@ function FavoriteButton(props) {
   }
   return (
     <>
-      <IconButton aria-label="add to favorites" onClick={handleFavorite}>
+      <IconButton
+        aria-label="add to favorites"
+        onClick={handleFavorite}
+        color={isSelected ? "primary" : undefined}
+      >
         <FavoriteIcon />
       </IconButton>
     </>
@@ -80,13 +85,17 @@ export default function RecipeCard(props) {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
   const [isVisible, setVisible] = useState(true);
-
+  const userToken = useSelector((state) =>
+    state.authentication.loggedIn ? state.authentication.user.token : undefined
+  );
+  const userId = useSelector((state) => state.authentication.user.id);
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
   function discard(event) {
     setVisible(false);
+    userService.deleteRecipe(userId, props.recipe);
   }
 
   return (
