@@ -95,7 +95,7 @@ export default function RecipeCard(props) {
 
   function discard(event) {
     setVisible(false);
-    deleteRecipe(userId, props.recipe.id, userToken);
+    userService.deleteRecipe(userId, props.recipe);
   }
 
   return (
