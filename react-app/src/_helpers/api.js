@@ -26,11 +26,3 @@ export async function getData(endpoint, userToken) {
 export async function postData(endpoint, userToken) {
   return fetchData("POST", endpoint, userToken);
 }
-
-export async function deleteRecipe(userId, recipeId, userToken) {
-  return fetchData(
-    "POST",
-    `users/${userId}/deleteRecipe/${recipeId}`,
-    userToken
-  );
-}
