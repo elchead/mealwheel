@@ -24,7 +24,12 @@ export default function SimpleBottomNavigation() {
       }}
       className={classes.root}
     >
-      <BottomNavigationAction label="Inspiration" icon={<EmojiObjectsIcon />} />
+      <BottomNavigationAction
+        label="Recommendations"
+        icon={<EmojiObjectsIcon />}
+        component={Link}
+        to="/"
+      />
       <BottomNavigationAction
         label="Favorites"
         component={Link}

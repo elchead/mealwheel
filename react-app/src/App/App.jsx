@@ -65,7 +65,7 @@ function App() {
               <Redirect from="*" to="/" />
             </Switch> */}
             <Container>
-              {loggedIn && <BottomNavigation align="center" gutterBottom />}
+              {loggedIn && <BottomNavigation gutterBottom />}
             </Container>
           </Router>
         </div>
