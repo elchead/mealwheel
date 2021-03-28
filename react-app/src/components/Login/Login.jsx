@@ -270,9 +270,9 @@ export default function LoginMask() {
                 color="primary"
                 type="button"
                 text={isLoggedIn ? "Logout" : "Login"}
-                onClick={handleLogout}
                 component={RouterLink}
                 to="/"
+                onClick={handleLogout}
               >
                 {" "}
                 Log Out
