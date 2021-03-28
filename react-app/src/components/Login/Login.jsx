@@ -159,11 +159,11 @@ export default function LoginMask() {
             direction="row"
             alignItems="center"
           >
-            <Grid item xs={6} sm={3}>
+            {/* <Grid item xs={6} sm={3}>
               <IconButton color="primary" component={RouterLink} to="/">
                 <HomeIcon />
               </IconButton>
-            </Grid>
+            </Grid> */}
 
             <Grid item className={classes.rootbtns} xs={1} sm={4}>
               <Button
@@ -330,15 +330,6 @@ export function RegisterButton() {
 
   return (
     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleClickOpen}
-        justify="center"
-      >
-        Sign Up
-      </Button>
-
       <Dialog
         open={open}
         onClose={handleClose}

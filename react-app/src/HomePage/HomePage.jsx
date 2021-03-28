@@ -19,19 +19,6 @@ import CardContent from "@material-ui/core/CardContent";
 import { getRecipes } from "../_helpers/api";
 import Layout from "../components/Layout";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
@@ -74,10 +61,7 @@ export function HomePage() {
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
   return (
     <>
-      {/* {!loggedIn && <Layout />} */}
-
       {loggedIn && <LoginHeader />}
-
       <main>
         {!loggedIn && (
           <div className={classes.heroContent}>
