@@ -10,6 +10,8 @@ import Link from "@material-ui/core/Link";
 import Recipe from "../components/Recipes/Recipe";
 import LoginMask from "../components/Login/Login";
 import { useSelector } from "react-redux";
+import BottomNavigation from "../components/BottomNav/BottomNav";
+import Footer from "../images/wave.svg";
 
 function Copyright() {
   return (
@@ -51,8 +53,10 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
+    minHeight: "50vh",
+    backgroundImage: `url(${Footer})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
   },
 }));
 
@@ -62,15 +66,7 @@ export function HomePage() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar color="secondary" position="relative">
-        <Toolbar>
-          {/* <CameraIcon className={classes.icon} /> */}
-          <Typography variant="h6" align="center" color="inherit" noWrap>
-            MealWheel 
-          </Typography>
-          <LoginMask />
-        </Toolbar>
-      </AppBar>
+
       <main>
         {/* Hero unit */}
         <div className={classes.heroContent}>
@@ -111,8 +107,9 @@ export function HomePage() {
         {loggedIn && <Recipe classes={classes}></Recipe>}
       </main>
       {/* Footer */}
+
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
+        {/* <Typography variant="h6" align="center" gutterBottom>
           Footer
         </Typography>
         <Typography
@@ -123,11 +120,12 @@ export function HomePage() {
         >
           Something here to give the footer a purpose!
         </Typography>
-        <Copyright />
+        <Copyright /> */}
       </footer>
+      {loggedIn && <BottomNavigation align="center" gutterBottom />}
       {/* End footer */}
     </React.Fragment>
   );
 }
 
-export default HomePage
+export default HomePage;

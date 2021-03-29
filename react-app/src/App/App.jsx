@@ -12,12 +12,28 @@ import SignUp from "../SignUpPage/SignUp";
 import RecipesPage from "../RecipesPage/RecipesPage";
 import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
+import { makeStyles } from "@material-ui/core/styles";
+import Header from "../HomePage/Header";
+
+import BackgroundImage from "../images/small.png";
+import { CssBaseline } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    minHeight: "100vh",
+    backgroundImage: `url(${BackgroundImage})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+    paddingBottom: "10ch",
+  },
+}));
 
 /*import BottomNavigation from "@material-ui/core/BottomNavigation";
 import SimpleBottomNavigation from "../components/BottomNav";
 import BottomNav from "../components/BottomNav/BottomNav";*/
 
 function App() {
+  const classes = useStyles();
   const alert = useSelector((state) => state.alert);
   const dispatch = useDispatch();
 
@@ -56,8 +72,18 @@ function App() {
                 </Switch> */}
               </Router>
             </div>
-          </div>
+            <Route exact path="/" component={HomePage} />
+            <Route path="/register" component={SignUp} />
+            <Route path="/recipes" component={RecipesPage} />
+            {/*<Route path="/login" component={LoginPage} />*/}
+            {/* <Switch>
+              <PrivateRoute exact path="/" component={HomePage} />
+              <Route path="/login" component={LoginPage} />
+              <Route path="/register" component={RegisterPage} />
+              <Redirect from="*" to="/" />
+            </Switch> */}
         </div>
+      </div>
     </div>
   );
 }

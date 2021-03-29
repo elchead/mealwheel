@@ -1,0 +1,31 @@
+.form-label {
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-bottom: 12px;
+    margin-top: 5px;
+    color: #000;
+  }
+
+  .invalid-feedback {
+    display: block;
+    font-size: 0.7rem;
+    margin-top: 7px;
+    margin-bottom: 10px;
+    color: rgb(163, 24, 24);
+  }
+
+  .form-input {
+    display: block;
+    padding-left: 10px;
+    outline: #00ca77;
+    border-radius: 2px;
+    height: 50px;
+    width: 100%;
+    border: none;
+  }
+
+  .form-inputs {
+    margin-bottom: 0.4rem;
+    width: 100%;
+  }
+

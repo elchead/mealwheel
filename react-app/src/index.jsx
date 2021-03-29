@@ -5,17 +5,30 @@ import { store } from "./_helpers";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { App } from "./App/App";
+import { BrowserRouter as Router } from "react-router-dom";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core";
 
-// Multiple Pages React
-import {BrowserRouter} from "react-router-dom";
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: "#00fb8d",
+      contrastText: "#fff",
+    },
+    secondary: {
+      main: "#16FFA6",
+      contrastText: "#fff",
+    },
+  },
+});
 
 ReactDOM.render(
-  
   <React.StrictMode>
     <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <App />
+        </ThemeProvider>
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById("root")
