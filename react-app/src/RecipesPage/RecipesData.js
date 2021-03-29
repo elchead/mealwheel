@@ -3,7 +3,7 @@ export default [
         title: "Keurig K-Duo",
         subtitle: "$149.99",
         description:
-            "Use both ground coffee and k-cup pods. Multiple brew sizes: brew an 8, 10, or 12-cup carafe and an 237, 296, or 355ml (8, 10, or 12 oz. ) cup ",
+             "Large grinding capacity yields ground coffee for up to 12 cups of coffee",
         avatarSrc:
             "https://upload.wikimedia.org/wikipedia/commons/e/e0/Keurig_Logo.png",
         imageUrl:
@@ -23,7 +23,7 @@ export default [
         title: "Hamilton Beach Flexbrew",
         subtitle: "$89.99",
         description:
-            "No two coffee drinkers are the same – so, the flexibility to customize how and what you brew is key. From fresh grounds to K-Cup pods, the Hamilton Beach FlexBrew 2-Way Coffee Maker gives you the options to please fans of all types of coffees.",
+            "Large grinding capacity yields ground coffee for up to 12 cups of coffee",
         avatarSrc:
             "https://images-na.ssl-images-amazon.com/images/I/81mjh5ZSu1L._AC_SL1500_.jpg",
         imageUrl:
@@ -33,7 +33,7 @@ export default [
         title: "Secura French Press",
         subtitle: "$36.48",
         description:
-            "3-layered Stainless steel filter traps the smallest coffee grounds to produce an exceptional full-bodied flavor, filter is easy to disassemble and clean.",
+            "Large grinding capacity yields ground coffee for up to 12 cups of coffee",
         avatarSrc:
             "https://images-na.ssl-images-amazon.com/images/I/61u76aiQQsL._AC_SL1000_.jpg",
         imageUrl:
@@ -43,7 +43,7 @@ export default [
         title: "Cafe Du Chateau French Press",
         subtitle: "$32.95",
         description:
-            "We use double stainless steel screen filters on a durable plunger supported by a spring loaded base plate to seal the edges, followed by a final top lid strainer to give you a pure brew with no grounds unlike other cheap presses.",
+            "Large grinding capacity yields ground coffee for up to 12 cups of coffee",
         avatarSrc:
             "https://images-na.ssl-images-amazon.com/images/I/81BdxpiRtCL._AC_SL1500_.jpg",
         imageUrl:
@@ -53,7 +53,7 @@ export default [
         title: "LIVINGbasics Single Serve Coffee Maker ",
         subtitle: "$37.99",
         description:
-            'Brew with a single serve k-cup pod or ground coffee. Less than 14 cm (5.5") wide slim design, its the perfect size for any space.',
+            "Large grinding capacity yields ground coffee for up to 12 cups of coffee",
         avatarSrc:
             "https://images-na.ssl-images-amazon.com/images/I/61PGHBLkl8L._AC_SL1500_.jpg",
         imageUrl:

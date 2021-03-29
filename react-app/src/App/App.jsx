@@ -18,6 +18,8 @@ import Header from "../HomePage/Header";
 import BackgroundImage from "../images/small.png";
 import { CssBaseline } from "@material-ui/core";
 
+import WeeklyPlanner from "../WeeklyPlanner/WeeklyPlanner";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     minHeight: "100vh",
@@ -55,6 +57,7 @@ function App() {
             <Route exact path="/" component={HomePage} />
             <Route path="/register" component={SignUp} />
             <Route path="/recipes" component={RecipesPage} />
+            <Route path="/planner" component={WeeklyPlanner}/>
             {/*<Route path="/login" component={LoginPage} />*/}
             {/* <Switch>
               <PrivateRoute exact path="/" component={HomePage} />
