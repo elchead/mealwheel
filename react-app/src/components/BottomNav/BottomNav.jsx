@@ -13,17 +13,21 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SimpleBottomNavigation() {
+function SimpleBottomNavigation() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
+  const handlechange = (event, newValue) => {
+    setValue(newValue)
+  }
 
   return (
+    <div>
     <BottomNavigation
+      className={classes.root}
       value={value}
       onChange={(event, newValue) => {
-        setValue(newValue);
+        setValue (newValue);
       }}
-      className={classes.root}
     >
       <BottomNavigationAction label="Inspiration" icon={<EmojiObjectsIcon />} />
       <BottomNavigationAction
@@ -34,5 +38,8 @@ export default function SimpleBottomNavigation() {
       />
       <BottomNavigationAction label="My Profile" icon={<PermIdentityIcon />} />
     </BottomNavigation>
+    </div>
   );
 }
+
+export default { SimpleBottomNavigation };

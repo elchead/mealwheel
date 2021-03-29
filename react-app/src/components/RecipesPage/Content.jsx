@@ -5,7 +5,7 @@ import RecipesDataList from "./RecipesData";
 
 const Content = () => {
     const getRecipesDataCard = RecipesDataObj => {
-        const{ title, subtitle, description, avatarUrl, imageUrl} = RecipesDataObj
+    
         return (
             <Grid item xs={12} sm={4}>
             <MainCard {...RecipesDataObj}/>
