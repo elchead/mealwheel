@@ -18,10 +18,16 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { userService } from "../../_services/user.service";
 import { useSelector } from "react-redux";
 import Menu, { AddToPlan } from "./Menu";
+import TextField from "@material-ui/core/TextField";
+import Button from "../Button/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 345,
+    "& .MuiTextField-root": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
   },
   media: {
     height: 0,
@@ -49,7 +55,6 @@ function FavoriteButton(props) {
     async function fetchIsSaved(userId, recipe) {
       const isSaved = await userService.isRecipeSaved(userId, recipe);
       setSelected(isSaved);
-      console.log("Rec", recipe);
     }
     fetchIsSaved(userId, props.recipe);
   }, []);
@@ -64,11 +69,7 @@ function FavoriteButton(props) {
   }
   return (
     <>
-      <IconButton
-        aria-label="add to favorites"
-        color={isSelected ? "secondary" : ""}
-        onClick={handleFavorite}
-      >
+      <IconButton aria-label="add to favorites" onClick={handleFavorite}>
         <FavoriteIcon />
       </IconButton>
     </>
@@ -150,5 +151,154 @@ export default function RecipeCard(props) {
         </Card>
       )}
     </>
+  );
+}
+
+export function RecipeCardForm(props) {
+  const classes = useStyles();
+  const [isVisible, setVisible] = useState(true);
+
+  function discard(event) {
+    setVisible(false);
+  }
+
+  return (
+    <>
+      {isVisible && (
+        <Card className={classes.root}>
+          <CardHeader
+            avatar={
+              <Avatar aria-label="recipe" className={classes.avatar}>
+                R
+              </Avatar>
+            }
+            action={<Menu discard={discard} />}
+            // title={
+            //   <TextField multiline name="name" label="Recipe title"></TextField>
+            // }
+            // subheader="September 14, 2016"
+          />
+          {/* <CardMedia
+            className={classes.media}
+            image={props.recipe.img}
+            title={props.recipe.name}
+          /> */}
+          <CardContent>
+            {/* <Typography variant="body2" color="textSecondary" component="p">
+              {props.recipe.description}
+            </Typography> */}
+          </CardContent>
+          <CardActions disableSpacing>
+            <CardContent>
+              <RecipeForm hideForm={props.hideOverlay} />
+            </CardContent>
+          </CardActions>
+        </Card>
+      )}
+    </>
+  );
+}
+
+function RecipeForm(props) {
+  const classes = useStyles();
+  const [name, setName] = useState("");
+  const [prepTime, setPrepTime] = useState(0);
+  const [ingredients, setIngredients] = useState([]);
+  const [steps, setSteps] = useState("");
+  const [description, setDescription] = useState("");
+  const userId = useSelector((state) => state.authentication.user.id);
+
+  function saveRecipe(recipe) {
+    userService.saveRecipe(userId, recipe).catch((err) => console.error(err));
+  }
+  function changePrepTime(event) {
+    setPrepTime(event.target.value);
+  }
+
+  function changeIngredients(event) {
+    setIngredients(event.target.value);
+  }
+
+  function changeSteps(event) {
+    setSteps(event.target.value);
+  }
+
+  function changeDescription(event) {
+    setDescription(event.target.value);
+  }
+
+  function changeName(event) {
+    setName(event.target.value);
+  }
+
+  const uid = function () {
+    return parseInt(Date.now() - 100 * Math.random());
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    saveRecipe({
+      name: name,
+      steps: steps,
+      minutes: prepTime,
+      ingredients: ingredients,
+      description: description,
+      id: uid(),
+    });
+    props.hideForm();
+  }
+  return (
+    <form
+      className={classes.root}
+      noValidate
+      autoComplete="off"
+      onSubmit={handleSubmit}
+    >
+      <TextField
+        name="name"
+        label="Recipe title"
+        onChange={changeName}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      ></TextField>
+      <TextField
+        id="description"
+        label="Description:"
+        multiline
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={changeDescription}
+      />
+      <TextField
+        id="prep"
+        label="Preparation time: (min)"
+        type="number"
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={changePrepTime}
+      />
+      <TextField
+        id="ingredients"
+        label="Ingredients:"
+        multiline
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={changeIngredients}
+      />
+      <TextField
+        id="steps"
+        label="Steps:"
+        multiline
+        InputLabelProps={{
+          shrink: true,
+        }}
+        onChange={changeSteps}
+      />
+      <Button type="submit" text="Save" />
+    </form>
   );
 }
