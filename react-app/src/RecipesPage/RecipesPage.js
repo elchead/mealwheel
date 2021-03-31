@@ -16,7 +16,6 @@ function RecipesPage() {
   const classes = useStyles();
   return (
     <>
-      {/* <Layout /> */}
       <main>
         <Recipe
           classes={classes}
