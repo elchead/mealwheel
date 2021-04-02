@@ -15,7 +15,7 @@ export default function Button(props) {
 
   return (
     <div className={classes.root}>
-      <DefaultButton {...props} variant="contained" color="secondary">
+      <DefaultButton {...props} variant="contained" color="primary">
         {props.text}
       </DefaultButton>
     </div>

@@ -1,4 +1,4 @@
-import { AppBar, Toolbar, Typography, makeStyles, Button, IconButton, Drawer, Link, MenuItem } from "@material-ui/core";
+import { AppBar, Toolbar, Typography, makeStyles } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
@@ -69,7 +69,7 @@ const [state, setState] = useState({
     mobileView: false,
     drawerOpen: false,
   });
-    const { mobileView, drawerOpen } = state;
+    const { mobileView } = state;
   
   useEffect(() => {
     const setResponsiveness = () => {

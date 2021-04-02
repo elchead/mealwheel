@@ -151,7 +151,7 @@ export default function RegisterButton() {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <Button variant="contained" color="secondary" onClick={handleClickOpen} justify="center"
+        <Button variant="contained" color="primary" onClick={handleClickOpen} justify="center"
         className={classes.registerButton}>
           Create a new account
         </Button>
