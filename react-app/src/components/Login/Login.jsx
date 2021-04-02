@@ -49,6 +49,9 @@ const useStyles = makeStyles((theme) => ({
     height: 48,
     width: "35ch",
     padding: "0 30px",
+    "@media (max-width: 600px)": {
+      width: "25ch",
+    },
   },
   forgotPassword: {
     marginTop: theme.spacing(1),

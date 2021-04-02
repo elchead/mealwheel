@@ -80,7 +80,7 @@ export function HomePage() {
       <main>
         {!loggedIn &&
         <div className={classes.heroContent}>
-          <Grid container spacing={2}>
+         {/*  <Grid container spacing={2}>
             <Grid item xs={4}>
               <Card className={classes.root}>
                 <CardContent>

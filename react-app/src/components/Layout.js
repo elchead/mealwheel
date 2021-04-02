@@ -13,13 +13,14 @@ const useStyles = makeStyles((theme) => ({
       backgroundSize: "cover",
       paddingBottom: "10ch",
       backgroundColor: "#fff",
-      backgroundPosition: "center center",
   
-        "@media (max-width: 767px)": {
-          backgroundImage: `url(${MobileImage})`,
-          paddingBottom: 0,
-          backgroundSize: "cover",
-        },
+      "@media (max-width: 767px)": {
+        backgroundImage: `url(${MobileImage})`,
+        paddingBottom: 0,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "60%"
+      },
     },
   }));
 

@@ -38,8 +38,8 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "left",
     marginRight: "3ch",
       "@media (max-width: 900px)": {
-        marginRight: 0,
-        marginLeft: 15,
+        marginRight: "3ch",
+        marginLeft: "2vw",
       },
   },
   menuButton: {
@@ -54,11 +54,18 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontFamily: "Julius Sans One, sans-serif",
+    "@media (max-width: 900px)": {
+      fontSize: "7vw",
+    },
   },
   text: {
     fontFamily: "Cambria",
     color: "black",
     marginBottom: 40,
+    "@media (max-width: 900px)": {
+      fontSize: "4vw",
+      marginBottom: 30,
+    },
   }
 }));
 

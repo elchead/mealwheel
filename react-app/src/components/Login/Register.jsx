@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
       height: 48,
       width: "35ch",
       padding: '0 30px',
+      "@media (max-width: 600px)": {
+        width: "30ch",
+    },
     },
     forgotPassword: {
       marginTop: theme.spacing(1),
@@ -73,7 +76,12 @@ const useStyles = makeStyles((theme) => ({
     },
     menubtn: {
       marginTop: theme.spacing(5),
-    }
+    },
+    registerButton: {
+      "@media (max-width: 900px)": {
+        fontSize: "2vw",
+    },
+  }
   }));
   
     const styles = (theme) => ({
