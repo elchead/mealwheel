@@ -39,7 +39,6 @@ export default function CheckboxLabels(props) {
       checkedE: "easy",
     };
     let newPreferences = [];
-    console.log(states);
     for (const property in states) {
       if (states[property]) {
         const pref = mapStateToPreference[property];
