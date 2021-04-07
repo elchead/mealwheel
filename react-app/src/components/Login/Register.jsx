@@ -140,6 +140,7 @@ export default function RegisterButton() {
     if (user.username && user.password) {
       dispatch(userActions.register(user));
     }
+    handleClose();
   }
 
   function setPreferences(value) {
