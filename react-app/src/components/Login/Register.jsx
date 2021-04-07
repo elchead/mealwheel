@@ -20,6 +20,7 @@ import TextField from "../TextField/TextField";
 import Hidden from "@material-ui/core/Hidden";
 import { Link as RouterLink } from "react-router-dom";
 import PreferenceCheckbox from "../SignUpCheckboxes";
+import Stepper from "../Stepper";
 
 import { userActions } from "../../_actions";
 import "./Form.css";
@@ -117,6 +118,7 @@ export default function RegisterButton() {
     username: "",
     password: "",
     preferences: [""],
+    likedMeals: [],
   });
   const [submitted, setSubmitted] = useState(false);
   const dispatch = useDispatch();
@@ -131,6 +133,7 @@ export default function RegisterButton() {
     setUser((user) => ({ ...user, [name]: value }));
   }
   function handleSubmit(e) {
+    console.log(user);
     e.preventDefault();
 
     setSubmitted(true);
@@ -141,7 +144,10 @@ export default function RegisterButton() {
 
   function setPreferences(value) {
     setUser((user) => ({ ...user, preferences: value }));
-    // console.log("PRef", user.preferences);
+  }
+
+  function setLikedMeals(value) {
+    setUser((user) => ({ ...user, likedMeals: [...user.likedMeals, value] }));
   }
 
   const [open, setOpen] = React.useState(false);
@@ -182,38 +188,6 @@ export default function RegisterButton() {
 
           <DialogContent>
             <Grid container spacing={2}>
-              {/* <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="fname"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  text="First name"
-                  autoFocus
-                  onChange={handleChange}
-                />
-              </Grid>
-              {submitted && !user.firstName && (
-                <div className="invalid-feedback">First name is required</div>
-              )}
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  text="Last name"
-                  autoComplete="lname"
-                  onChange={handleChange}
-                />
-              </Grid>
-              {submitted && !user.lastName && (
-                <div className="invalid-feedback">Last name is required</div>
-              )}
-              TODO delete name signup */}
               <Grid item xs={12} sm={12}>
                 <TextField
                   required
@@ -261,12 +235,9 @@ export default function RegisterButton() {
                   <b>Food preferences:</b>
                 </Typography>
                 <PreferenceCheckbox setPreferences={setPreferences} />
-                {/* <FormControlLabel
-                  control={
-                    <Checkbox value="allowExtraEmails" color="primary" />
-                  }
-                  label="I want to receive sd inspiration, marketing promotions and updates via email."
-                /> */}
+              </Grid>
+              <Grid item xs={12}>
+                <Stepper setLikedMeals={setLikedMeals} />
               </Grid>
             </Grid>
           </DialogContent>

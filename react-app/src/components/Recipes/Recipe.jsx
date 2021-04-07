@@ -14,9 +14,9 @@ const Recipe = (props) => {
   let [cards, setCards] = useState([]);
   let [addedCards, setAddedCards] = useState([]);
   let [showForm, setShowForm] = useState(false);
-  const userToken = useSelector((state) =>
-    state.authentication.loggedIn ? state.authentication.user.token : undefined
-  );
+  // const userToken = useSelector((state) =>
+  //   state.authentication.loggedIn ? state.authentication.user.token : undefined
+  // );
   useEffect(() => {
     props
       .getData()
@@ -29,25 +29,6 @@ const Recipe = (props) => {
         console.error(err);
       });
   }, []);
-  // async function getData(endpoint = "recipes") {
-  //   const url = config.apiUrl + "/" + endpoint;
-  //   const bearer = "Bearer " + userToken;
-  //   try {
-  //     const res = await fetch(url, {
-  //       method: "GET",
-  //       withCredentials: true,
-  //       credentials: "include",
-  //       headers: {
-  //         Authorization: bearer,
-  //         "Content-Type": "application/json",
-  //       },
-  //     });
-  //     const recipes = await res.json();
-  //     return recipes;
-  //   } catch (err) {
-  //     throw new Error("API is not available");
-  //   }
-  // }
   function addOwnCard(event) {
     // console.log("click");
     let counter = 0;
