@@ -18,7 +18,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import { getRecipes } from "../_helpers/api";
 import Layout from "../components/Layout";
-
+import { userService as user } from "../_services/user.service";
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
@@ -59,6 +59,9 @@ const useStyles = makeStyles((theme) => ({
 export function HomePage() {
   const classes = useStyles();
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
+  const userId = useSelector((state) =>
+    loggedIn ? state.authentication.user.id : undefined
+  );
   return (
     <>
       {loggedIn && <LoginHeader />}
@@ -76,7 +79,7 @@ export function HomePage() {
                       color="textPrimary"
                       gutterBottom
                     >
-                      Point number one
+                      Personalized food recommendations
                     </Typography>
                   </CardContent>
                 </Card>
@@ -92,7 +95,7 @@ export function HomePage() {
                       color="textPrimary"
                       gutterBottom
                     >
-                      Customized meal planner
+                      Plan your meal week
                     </Typography>
                   </CardContent>
                 </Card>
@@ -108,7 +111,7 @@ export function HomePage() {
                       color="textPrimary"
                       gutterBottom
                     >
-                      Point number three
+                      Save your favorite recipes
                     </Typography>
                   </CardContent>
                 </Card>
@@ -132,7 +135,12 @@ export function HomePage() {
           </div>
         )}
 
-        {loggedIn && <Recipe classes={classes} getData={getRecipes}></Recipe>}
+        {loggedIn && userId !== undefined && (
+          <Recipe
+            classes={classes}
+            getData={() => user.getRecommendedRecipes(userId)}
+          ></Recipe>
+        )}
       </main>
 
       {/* Footer */}

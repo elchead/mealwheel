@@ -24,17 +24,16 @@ export async function postData(endpoint) {
 }
 
 export async function getRecipes() {
-  const endpoint = "recipes";
-  const http_method = "GET";
-  const url = config.apiUrl + "/" + endpoint + "?nbr=10";
-  try {
-    const res = await fetch(url, {
-      method: http_method,
-    });
-    const recipes = await res.json();
-    return recipes;
-  } catch (err) {
-    throw new Error("API is not available");
-  }
-  // return fetchData("GET", "recipes");
+  //  // const endpoint = "recipes";
+  // const http_method = "GET";
+  // const url = config.apiUrl + "/" + endpoint + "?nbr=10";
+  // try {
+  //   const res = await fetch(url, {
+  //     method: http_method,
+  //   });
+  //   const recipes = await res.json();
+  //   return recipes;
+  // } catch (err) {
+  //   throw new Error("API is not available");
+  return fetchData("GET", "recipes?nbr=10");
 }

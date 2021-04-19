@@ -15,6 +15,7 @@ export const userService = {
   updateWeekPlan,
   getDaysToBeUpdated,
   getFavoriteRecipes,
+  getRecommendedRecipes,
 };
 
 function login(username, password) {
@@ -85,6 +86,7 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
+  console.log(response);
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
     if (!response.ok) {
@@ -127,4 +129,9 @@ function getDaysToBeUpdated(userId) {
 
 function getFavoriteRecipes(userId) {
   return get(`users/${userId}/favRecipes`);
+}
+
+async function getRecommendedRecipes(userId) {
+  console.log(userId);
+  return get(`users/${userId}/recipes?nbr=6`);
 }
