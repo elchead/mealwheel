@@ -8,12 +8,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import { getRecipes } from "../_helpers/api";
 import RecipeCard from "../components/Recipes/RecipeCardSignUp";
-let Steps = [];
-const getSteps = async () => {
-  Steps = await getRecipes();
-};
-getSteps();
-
+var _ = require("underscore");
 const useStyles = makeStyles((theme) => ({
   root: {
     maxWidth: 400,
@@ -35,11 +30,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+let StepCount = 0;
 export default function Stepper(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [Steps, setSteps] = React.useState([]);
   const maxSteps = Steps.length;
+  const getSteps = async () => {
+    if (StepCount < 1) {
+      const res = await getRecipes();
+      setSteps(res);
+      StepCount += 1;
+      console.log(res);
+    }
+  };
+  React.useEffect(() => {}, [Steps]);
+  getSteps();
 
   const handleLiked = (recipeId) => {
     props.setLikedMeals(recipeId);
@@ -63,7 +70,9 @@ export default function Stepper(props) {
       {/* <Paper square elevation={0} className={classes.header}>
         <Typography>{Steps[activeStep].title}</Typography>
       </Paper> */}
-      <RecipeCard recipe={Steps[activeStep]} handleLiked={handleLiked} />
+      {!_.isEmpty(Steps) && (
+        <RecipeCard recipe={Steps[activeStep]} handleLiked={handleLiked} />
+      )}
       <MobileStepper
         steps={maxSteps}
         position="static"
