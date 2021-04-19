@@ -110,7 +110,7 @@ export default function RecipeCard(props) {
             </IconButton>
             <IconButton
               aria-label="favorite"
-              onClick={() => props.handleLiked(props.recipe.id)}
+              onClick={() => props.handleLiked(props.recipe)}
             >
               <FavoriteIcon />
             </IconButton>

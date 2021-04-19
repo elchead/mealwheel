@@ -119,6 +119,7 @@ export default function RegisterButton() {
     password: "",
     preferences: [""],
     likedMeals: [],
+    recipes: [],
   });
   const [submitted, setSubmitted] = useState(false);
   const dispatch = useDispatch();
@@ -149,6 +150,10 @@ export default function RegisterButton() {
 
   function setLikedMeals(value) {
     setUser((user) => ({ ...user, likedMeals: [...user.likedMeals, value] }));
+  }
+
+  function setRecipes(value) {
+    setUser((user) => ({ ...user, recipes: [...user.recipes, value] }));
   }
 
   const [open, setOpen] = React.useState(false);
@@ -238,7 +243,10 @@ export default function RegisterButton() {
                 <PreferenceCheckbox setPreferences={setPreferences} />
               </Grid>
               <Grid item xs={12}>
-                <Stepper setLikedMeals={setLikedMeals} />
+                <Stepper
+                  setLikedMeals={setLikedMeals}
+                  setRecipes={setRecipes}
+                />
               </Grid>
             </Grid>
           </DialogContent>

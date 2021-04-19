@@ -48,8 +48,9 @@ export default function Stepper(props) {
   React.useEffect(() => {}, [Steps]);
   getSteps();
 
-  const handleLiked = (recipeId) => {
-    props.setLikedMeals(recipeId);
+  const handleLiked = (recipe) => {
+    props.setLikedMeals(recipe.id);
+    props.setRecipes(recipe);
     handleNext();
   };
 
