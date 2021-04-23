@@ -1,7 +1,7 @@
-import import React from 'react';
+import React from 'react';
 import MaterialTable from 'material-table';
 
-class WWeekTable extends React.Component {
+class WeekTable extends React.Component {
   constructor(props) {
     super(props);
     this.tableRef = React.createRef();

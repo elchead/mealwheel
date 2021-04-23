@@ -18,21 +18,11 @@ import Layout from "../components/Layout";
 
 import WeekTable from "../components/WeekTable/WeekTable";
 import { AddToPlan } from "../components/Recipes/Menu";
-import { generate } from "shortid";
 
 function App() {
   const alert = useSelector((state) => state.alert);
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
   const dispatch = useDispatch();
-  const [rows, setRows] = useState ([{
-    Mo: "Meal 1",
-    Tu: "Meal 2",
-    We: "Meal 3",
-    Th: "Meal 4",
-    Fr: "Meal 5",
-    Sa: "Meal 6",
-    Su: "Meal 7",
-  }]);
 
   useEffect(() => {
     history.listen((location, action) => {
