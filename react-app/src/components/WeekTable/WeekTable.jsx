@@ -1,3 +1,4 @@
+import import React from 'react';
 import MaterialTable from 'material-table';
 
 class WWeekTable extends React.Component {
