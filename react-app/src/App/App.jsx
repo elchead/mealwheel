@@ -16,7 +16,11 @@ import NavBar from "../components/NavBar";
 import LoginHeader from "../HomePage/LoginHeader";
 import Layout from "../components/Layout";
 
+<<<<<<< HEAD
 import WeekTable from "../components/WeekTable/WeekTable";
+=======
+import PlannerTable from "../components/PlannerTable/PlannerTable"
+>>>>>>> b9c0bb0bfd7616fbef6be6273d794f3ffea4c7c8
 import { AddToPlan } from "../components/Recipes/Menu";
 import { generate } from "shortid";
 
@@ -60,7 +64,11 @@ function App() {
               <Redirect from="*" to="/" />
             </Switch> */}
 
+<<<<<<< HEAD
             <WeekTable/>
+=======
+            <PlannerTable rows={rows}/>
+>>>>>>> b9c0bb0bfd7616fbef6be6273d794f3ffea4c7c8
 
             <footer>
               <Container>
