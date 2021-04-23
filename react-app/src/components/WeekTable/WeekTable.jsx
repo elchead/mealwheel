@@ -2,7 +2,7 @@
 import React from 'react';
 import MaterialTable from 'material-table';
 
-class WWeekTable extends React.Component {
+class WeekTable extends React.Component {
   constructor(props) {
     super(props);
     this.tableRef = React.createRef();
@@ -27,18 +27,15 @@ class WWeekTable extends React.Component {
     return (
       <React.Fragment>
         <MaterialTable style={{marginLeft:'10px', marginRight:'10px'}}
-          title="Worldwide Covid-19 Stats"
+          title="Weekly Review of your Meal Plan"
           columns={[
-            { title: 'Country', field: 'country' },
-            { title: 'Total Cases', field: 'cases' },
-            { title: 'Current Cases', field: 'todayCases' },
-            { title: 'Total Deaths', field: 'deaths', type: 'text' },
-            { title: 'Current Deaths', field: 'todayDeaths' },
-            { title: 'Recovered Patients', field: 'recovered' },
-            { title: 'Active Patients', field: 'active' },
-            { title: 'Critical Patients', field: 'critical' },
-            { title: 'Cases/million', field: 'casesPerOneMillion' },
-            
+            { title: 'Monday', field: 'country' },
+            { title: 'Tuesday', field: 'cases' },
+            { title: 'Wednesday', field: 'todayCases' },
+            { title: 'Thursday', field: 'deaths', type: 'text' },
+            { title: 'Friday', field: 'todayDeaths' },
+            { title: 'Saturday', field: 'recovered' },
+            { title: 'Sunday', field: 'active' },
           ]}
           data={this.state.stats}
           actions={[
@@ -52,7 +49,7 @@ class WWeekTable extends React.Component {
           options={{
             
             headerStyle: {
-              backgroundColor: '#3f51b5',
+              backgroundColor: '#000000',
               color: '#FFFF'
             }}
           }
