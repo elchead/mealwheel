@@ -40,10 +40,10 @@ const Recipe = (props) => {
     setShowForm(true);
   }
   function hideForm() {
-    setShowForm(false);
-    const cards = [...addedCards];
-    cards.pop();
-    setAddedCards(cards);
+    // setShowForm(false);
+    // const cards = [...addedCards];
+    // cards.pop();
+    // setAddedCards(cards);
   }
   return (
     <Container className={props.classes.cardGrid} maxWidth="md">

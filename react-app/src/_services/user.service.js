@@ -16,6 +16,7 @@ export const userService = {
   getDaysToBeUpdated,
   getFavoriteRecipes,
   getRecommendedRecipes,
+  getWeekPlan,
 };
 
 function login(username, password) {
@@ -132,6 +133,10 @@ function getFavoriteRecipes(userId) {
 }
 
 async function getRecommendedRecipes(userId) {
-  console.log(userId);
+  // console.log(userId);
   return get(`users/${userId}/recipes?nbr=6`);
+}
+
+function getWeekPlan(id) {
+  return get(`users/${id}/recipes`);
 }

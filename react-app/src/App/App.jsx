@@ -15,6 +15,7 @@ import Container from "@material-ui/core/Container";
 import NavBar from "../components/NavBar";
 import LoginHeader from "../HomePage/LoginHeader";
 import Layout from "../components/Layout";
+
 function App() {
   const alert = useSelector((state) => state.alert);
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
@@ -44,6 +45,7 @@ function App() {
               <PrivateRoute exact path="/" component={HomePage} />
               <Redirect from="*" to="/" />
             </Switch> */}
+
             <footer>
               <Container>
                 {loggedIn && <BottomNavigation gutterBottom />}

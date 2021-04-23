@@ -19,6 +19,7 @@ import CardContent from "@material-ui/core/CardContent";
 import { getRecipes } from "../_helpers/api";
 import Layout from "../components/Layout";
 import { userService as user } from "../_services/user.service";
+import WeekTable from "../components/WeekTable/WeekTable";
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
@@ -142,6 +143,8 @@ export function HomePage() {
           ></Recipe>
         )}
       </main>
+
+      {loggedIn && <WeekTable />}
 
       {/* Footer */}
       {/* {loggedIn && <BottomNavigation align="center" gutterBottom />} */}
