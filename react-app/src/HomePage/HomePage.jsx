@@ -19,6 +19,7 @@ import CardContent from "@material-ui/core/CardContent";
 import { getRecipes } from "../_helpers/api";
 import Layout from "../components/Layout";
 import { userService as user } from "../_services/user.service";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     minWidth: 275,
@@ -140,6 +141,7 @@ export function HomePage() {
             classes={classes}
             getData={() => user.getRecommendedRecipes(userId)}
           ></Recipe>
+          
         )}
       </main>
 
