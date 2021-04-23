@@ -129,6 +129,7 @@ export function AddToPlan(props) {
   ]);
   const userId = useSelector((state) => state.authentication.user.id);
 
+
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
     const capitalizeWeekdays = (days) => {
