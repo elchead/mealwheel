@@ -42,7 +42,7 @@ export default function Stepper(props) {
       const res = await getRecipes();
       setSteps(res);
       StepCount += 1;
-      console.log(res);
+      // console.log(res);
     }
   };
   React.useEffect(() => {}, [Steps]);
