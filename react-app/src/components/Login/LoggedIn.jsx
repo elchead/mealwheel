@@ -16,8 +16,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "../TextField/TextField";
-import Hidden from '@material-ui/core/Hidden';
-import { Link as RouterLink } from 'react-router-dom';
+import Hidden from "@material-ui/core/Hidden";
+import { Link as RouterLink } from "react-router-dom";
 
 import { userActions } from "../../_actions";
 import "./Form.css";
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   forgotPassword: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
-    color: '#00ca77',
+    color: "#00ca77",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -151,13 +151,14 @@ export default function LoggedIn() {
   return (
     <>
       {!isLoggedIn ? (
-        <form
-          noValidate
-          autoComplete="off"
-          onSubmit={handleSubmit}
-        >
-
-          <Grid container justify="flex-end" spacing={1} direction="row" alignItems="center">
+        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+          <Grid
+            container
+            justify="flex-end"
+            spacing={1}
+            direction="row"
+            alignItems="center"
+          >
             <Grid item xs={6} sm={3}>
               <IconButton color="primary" component={RouterLink} to="/">
                 <HomeIcon />
@@ -165,17 +166,20 @@ export default function LoggedIn() {
             </Grid>
 
             <Grid item className={classes.rootbtns} xs={1} sm={4}>
-              <Button variant="contained" color="primary" onClick={handleClickOpen}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleClickOpen}
+              >
                 Login
               </Button>
             </Grid>
 
-            <Hidden only={['xs', 'sm']}>
+            <Hidden only={["xs", "sm"]}>
               <Grid item className={classes.rootbtns} sm={5}>
-                <RegisterButton/>
+                <RegisterButton />
               </Grid>
             </Hidden>
-          
           </Grid>
 
           <Dialog
@@ -238,32 +242,34 @@ export default function LoggedIn() {
                     Log In
                   </Button>
                 </Grid>
-          
               </Grid>
             </DialogActions>
+
+            <Typography align="center" className={classes.forgotPassword}>
+              Don't have an account yet?
+            </Typography>
+            <Grid container justify="center">
+              <Grid item>
+                <RegisterButton />
+              </Grid>
+            </Grid>
 
             <Typography
               align="center"
               className={classes.forgotPassword}
-              >
-                Don't have an account yet?
-            </Typography>
-            <Grid container justify="center">
-              <Grid item>
-                <RegisterButton/>
-              </Grid>
-            </Grid>
-
-            <Typography align="center"
-              className={classes.forgotPassword}
-              role="button">
-                
-            </Typography>
+              role="button"
+            ></Typography>
           </Dialog>
         </form>
       ) : (
         <>
-          <Grid container justify="flex-end" spacing={1} direction="row" alignItems="center">
+          <Grid
+            container
+            justify="flex-end"
+            spacing={1}
+            direction="row"
+            alignItems="center"
+          >
             <Grid item xs={8} sm={8}>
               <Button
                 variant="contained"
@@ -271,6 +277,8 @@ export default function LoggedIn() {
                 type="button"
                 text={isLoggedIn ? "Logout" : "Login"}
                 onClick={handleLogout}
+                component={RouterLink}
+                to="/"
               >
                 {" "}
                 Log Out
@@ -327,12 +335,13 @@ export function RegisterButton() {
   };
 
   return (
-    <form
-      noValidate
-      autoComplete="off"
-      onSubmit={handleSubmit}
-    >
-      <Button variant="contained" color="secondary" onClick={handleClickOpen} justify="center">
+    <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={handleClickOpen}
+        justify="center"
+      >
         Sign Up
       </Button>
 
@@ -398,9 +407,8 @@ export function RegisterButton() {
                   onChange={handleChange}
                 />
               </Grid>
-              
-            
-            {/* <Grid item xs={12}>
+
+              {/* <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -436,7 +444,6 @@ export function RegisterButton() {
               />
             </Grid> */}
             </Grid>
-
           </DialogContent>
 
           <DialogActions>
@@ -457,8 +464,8 @@ export function RegisterButton() {
           <Typography
             align="center"
             className={classes.forgotPassword}
-            role="button">
-          </Typography>
+            role="button"
+          ></Typography>
         </div>
       </Dialog>
     </form>

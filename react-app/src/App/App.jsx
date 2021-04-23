@@ -16,8 +16,6 @@ import NavBar from "../components/NavBar";
 import LoginHeader from "../HomePage/LoginHeader";
 import Layout from "../components/Layout";
 
-import WeekTable from "../components/WeekTable/WeekTable"
-
 function App() {
   const alert = useSelector((state) => state.alert);
   const loggedIn = useSelector((state) => state.authentication.loggedIn);
@@ -47,9 +45,6 @@ function App() {
               <PrivateRoute exact path="/" component={HomePage} />
               <Redirect from="*" to="/" />
             </Switch> */}
-
-            <WeekTable/>
-
 
             <footer>
               <Container>
