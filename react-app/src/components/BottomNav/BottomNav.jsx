@@ -8,9 +8,7 @@ import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import { Link } from "react-router-dom";
 const useStyles = makeStyles({
-  root: {
-    width: 500,
-  },
+  root: {},
 });
 
 export default function SimpleBottomNavigation() {
@@ -25,12 +23,17 @@ export default function SimpleBottomNavigation() {
       }}
       className={classes.root}
     >
-      <BottomNavigationAction label="Inspiration" icon={<EmojiObjectsIcon />} />
+      <BottomNavigationAction
+        label="Recommendations"
+        icon={<EmojiObjectsIcon />}
+        component={Link}
+        to="/"
+      />
       <BottomNavigationAction
         label="Favorites"
         component={Link}
         to="/recipes"
-        icon={<FavoriteIcon color="secondary" />}
+        icon={<FavoriteIcon color="primary" />}
       />
       <BottomNavigationAction label="My Profile" icon={<PermIdentityIcon />} />
     </BottomNavigation>

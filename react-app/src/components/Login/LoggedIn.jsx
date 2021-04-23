@@ -16,8 +16,8 @@ import CloseIcon from "@material-ui/icons/Close";
 import Grid from "@material-ui/core/Grid";
 import IconButton from "@material-ui/core/IconButton";
 import TextField from "../TextField/TextField";
-import Hidden from "@material-ui/core/Hidden";
-import { Link as RouterLink } from "react-router-dom";
+import Hidden from '@material-ui/core/Hidden';
+import { Link as RouterLink } from 'react-router-dom';
 
 import { userActions } from "../../_actions";
 import "./Form.css";
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    color: "#000",
+    color: "#fff",
   },
   btn: {
     background: "linear-gradient(45deg, #16ffa6 30%, #00ca77 90%)",
@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
   forgotPassword: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(2),
-    color: "#00ca77",
+    color: '#00ca77',
   },
   avatar: {
     margin: theme.spacing(1),
@@ -106,7 +106,7 @@ const DialogTitle = withStyles(styles)((props) => {
   );
 });
 
-export default function LoginMask() {
+export default function LoggedIn() {
   const classes = useStyles();
   const [submitted, setSubmitted] = useState(false);
   const [inputs, setInputs] = useState({
@@ -151,35 +151,31 @@ export default function LoginMask() {
   return (
     <>
       {!isLoggedIn ? (
-        <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-          <Grid
-            container
-            justify="flex-end"
-            spacing={1}
-            direction="row"
-            alignItems="center"
-          >
-            {/* <Grid item xs={6} sm={3}>
+        <form
+          noValidate
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
+
+          <Grid container justify="flex-end" spacing={1} direction="row" alignItems="center">
+            <Grid item xs={6} sm={3}>
               <IconButton color="primary" component={RouterLink} to="/">
                 <HomeIcon />
               </IconButton>
-            </Grid> */}
+            </Grid>
 
             <Grid item className={classes.rootbtns} xs={1} sm={4}>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleClickOpen}
-              >
+              <Button variant="contained" color="primary" onClick={handleClickOpen}>
                 Login
               </Button>
             </Grid>
 
-            <Hidden only={["xs", "sm"]}>
+            <Hidden only={['xs', 'sm']}>
               <Grid item className={classes.rootbtns} sm={5}>
-                <RegisterButton />
+                <RegisterButton/>
               </Grid>
             </Hidden>
+          
           </Grid>
 
           <Dialog
@@ -242,36 +238,38 @@ export default function LoginMask() {
                     Log In
                   </Button>
                 </Grid>
+          
               </Grid>
             </DialogActions>
-
-            <Typography align="center" className={classes.forgotPassword}>
-              Don't have an account yet?
-            </Typography>
-            <Grid container justify="center">
-              <Grid item>
-                <RegisterButton />
-              </Grid>
-            </Grid>
 
             <Typography
               align="center"
               className={classes.forgotPassword}
-              role="button"
-            ></Typography>
+              >
+                Don't have an account yet?
+            </Typography>
+            <Grid container justify="center">
+              <Grid item>
+                <RegisterButton/>
+              </Grid>
+            </Grid>
+
+            <Typography align="center"
+              className={classes.forgotPassword}
+              role="button">
+                
+            </Typography>
           </Dialog>
         </form>
       ) : (
         <>
-          <Grid container justify="center" spacing={3}>
-            <Grid item>
+          <Grid container justify="flex-end" spacing={1} direction="row" alignItems="center">
+            <Grid item xs={8} sm={8}>
               <Button
                 variant="contained"
-                color="primary"
+                color="secondary"
                 type="button"
                 text={isLoggedIn ? "Logout" : "Login"}
-                component={RouterLink}
-                to="/"
                 onClick={handleLogout}
               >
                 {" "}
@@ -279,8 +277,8 @@ export default function LoginMask() {
               </Button>
             </Grid>
 
-            <Grid item className={classes.rootbtns}>
-              <Typography>Welcome back, {username}</Typography>
+            <Grid item className={classes.rootbtns} xs={4} sm={4}>
+              <Typography>Welcome {username}</Typography>
             </Grid>
           </Grid>
         </>
@@ -329,7 +327,15 @@ export function RegisterButton() {
   };
 
   return (
-    <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+    <form
+      noValidate
+      autoComplete="off"
+      onSubmit={handleSubmit}
+    >
+      <Button variant="contained" color="secondary" onClick={handleClickOpen} justify="center">
+        Sign Up
+      </Button>
+
       <Dialog
         open={open}
         onClose={handleClose}
@@ -392,8 +398,9 @@ export function RegisterButton() {
                   onChange={handleChange}
                 />
               </Grid>
-
-              {/* <Grid item xs={12}>
+              
+            
+            {/* <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -429,6 +436,7 @@ export function RegisterButton() {
               />
             </Grid> */}
             </Grid>
+
           </DialogContent>
 
           <DialogActions>
@@ -449,8 +457,8 @@ export function RegisterButton() {
           <Typography
             align="center"
             className={classes.forgotPassword}
-            role="button"
-          ></Typography>
+            role="button">
+          </Typography>
         </div>
       </Dialog>
     </form>

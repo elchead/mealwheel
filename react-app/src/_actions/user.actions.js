@@ -54,8 +54,9 @@ function register(user) {
         dispatch(alertActions.success("Registration successful"));
       },
       (error) => {
-        dispatch(failure(error.toString()));
-        dispatch(alertActions.error(error.toString()));
+        dispatch(alertActions.error("Username is already registered"));
+        // dispatch(failure(error.toString()));
+        // dispatch(alertActions.error(error.toString()));
       }
     );
   };

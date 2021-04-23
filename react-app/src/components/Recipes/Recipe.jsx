@@ -1,3 +1,4 @@
+import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -11,42 +12,24 @@ var _ = require("underscore");
 
 const Recipe = (props) => {
   let [responseObj, setResponseObj] = useState([]);
-  let [cards, setCards] = useState([0, 1, 2]);
+  let [cards, setCards] = useState([]);
   let [addedCards, setAddedCards] = useState([]);
   let [showForm, setShowForm] = useState(false);
-  const userToken = useSelector((state) =>
-    state.authentication.loggedIn ? state.authentication.user.token : undefined
-  );
+  // const userToken = useSelector((state) =>
+  //   state.authentication.loggedIn ? state.authentication.user.token : undefined
+  // );
   useEffect(() => {
-    getData()
+    props
+      .getData()
       .then((data) => {
         data.map((card) => (card.img = recipe_img));
-        // data.img = recipe_img;
         setResponseObj(data);
+        setCards([...Array(data.length).keys()]);
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
-  async function getData() {
-    const url = config.apiUrl + "/recipes";
-    const bearer = "Bearer " + userToken;
-    try {
-      const res = await fetch(url, {
-        method: "GET",
-        withCredentials: true,
-        credentials: "include",
-        headers: {
-          Authorization: bearer,
-          "Content-Type": "application/json",
-        },
-      });
-      const recipes = await res.json();
-      return recipes;
-    } catch (err) {
-      throw new Error("API is not available");
-    }
-  }
   function addOwnCard(event) {
     // console.log("click");
     let counter = 0;

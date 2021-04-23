@@ -1,6 +1,6 @@
 import config from "../config";
 import { authHeader } from "../_helpers";
-
+var _ = require("underscore");
 export const userService = {
   login,
   logout,
@@ -14,22 +14,49 @@ export const userService = {
   isRecipeSaved,
   updateWeekPlan,
   getDaysToBeUpdated,
+  getFavoriteRecipes,
+  getRecommendedRecipes,
 };
 
 function login(username, password) {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ username, password }),
-  };
-  return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
-    .then(handleResponse)
-    .then((user) => {
-      // store user details and jwt token in local storage to keep user logged in between page refreshes
-      localStorage.setItem("user", JSON.stringify(user));
+  return post(
+    "users/authenticate",
+    JSON.stringify({ username, password })
+  ).then((user) => {
+    // store user details and jwt token in local storage to keep user logged in between page refreshes
+    localStorage.setItem("user", JSON.stringify(user));
 
-      return user;
-    });
+    return user;
+  });
+}
+
+function post(endpoint, body = {}) {
+  return fetchData("POST", endpoint, body);
+}
+
+function get(endpoint, body = {}) {
+  return fetchData("GET", endpoint, body);
+}
+
+function put(endpoint, body = {}) {
+  return fetchData("PUT", endpoint, body);
+}
+
+function deleteREST(endpoint, body = {}) {
+  return fetchData("DELETE", endpoint, body);
+}
+
+function fetchData(http_method, endpoint, body) {
+  const requestOptions = {
+    method: http_method,
+    headers: { ...authHeader(), "Content-Type": "application/json" },
+  };
+  if (!_.isEmpty(body)) {
+    requestOptions.body = body;
+  }
+  return fetch(`${config.apiUrl}/${endpoint}`, requestOptions).then(
+    handleResponse
+  );
 }
 
 function logout() {
@@ -38,136 +65,73 @@ function logout() {
 }
 
 function getAll() {
-  const requestOptions = {
-    method: "GET",
-    headers: authHeader(),
-  };
-
-  return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
+  return get("users", {});
 }
 
 function getById(id) {
-  const requestOptions = {
-    method: "GET",
-    headers: authHeader(),
-  };
-
-  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(
-    handleResponse
-  );
+  return get(`users/${id}`, {});
 }
 
 function register(user) {
-  const requestOptions = {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user),
-  };
-
-  return fetch(`${config.apiUrl}/users/register`, requestOptions).then(
-    handleResponse
-  );
+  return post("users/register", JSON.stringify(user));
 }
 
 function update(user) {
-  const requestOptions = {
-    method: "PUT",
-    headers: { ...authHeader(), "Content-Type": "application/json" },
-    body: JSON.stringify(user),
-  };
-
-  return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(
-    handleResponse
-  );
+  return put(`users/${user.id}`, JSON.stringify(user));
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(id) {
-  const requestOptions = {
-    method: "DELETE",
-    headers: authHeader(),
-  };
-
-  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(
-    handleResponse
-  );
+  return deleteREST(`users/${id}`, {});
 }
 
 function handleResponse(response) {
+  console.log(response);
   return response.text().then((text) => {
     const data = text && JSON.parse(text);
     if (!response.ok) {
       if (response.status === 401) {
         // auto logout if 401 response returned from api
         logout();
-        // location.reload(true);
       }
 
       const error = (data && data.message) || response.statusText;
       return Promise.reject(error);
     }
-    // console.log("DATA", data);
     return data;
   });
 }
 
 function saveRecipe(userId, recipe) {
   const req = { recipe: recipe };
-  const requestOptions = {
-    method: "POST",
-    headers: { ...authHeader(), "Content-Type": "application/json" },
-    body: JSON.stringify(req),
-  };
-
-  return fetch(
-    `${config.apiUrl}/users/${userId}/saveRecipe`,
-    requestOptions
-  ).then(handleResponse);
+  return post(`users/${userId}/saveRecipe`, JSON.stringify(req));
 }
 
 function deleteRecipe(userId, recipe) {
-  const requestOptions = {
-    method: "POST",
-    headers: { ...authHeader(), "Content-Type": "application/json" },
-  };
-  return fetch(
-    `${config.apiUrl}/users/${userId}/deleteRecipe/${recipe.id}`,
-    requestOptions
-  ).then(handleResponse);
+  return post(`users/${userId}/deleteRecipe/${recipe.id}`);
 }
 
 function isRecipeSaved(userId, recipe) {
-  const requestOptions = {
-    method: "POST",
-    headers: { ...authHeader(), "Content-Type": "application/json" },
-  };
-  return fetch(
-    `${config.apiUrl}/users/${userId}/checkRecipe/${recipe.id}`,
-    requestOptions
-  ).then(handleResponse);
+  return post(`users/${userId}/checkRecipe/${recipe.id}`);
 }
 
 function updateWeekPlan(userId, day, recipe) {
   const req = { recipe: recipe };
-  const requestOptions = {
-    method: "PUT",
-    headers: { ...authHeader(), "Content-Type": "application/json" },
-    body: JSON.stringify(req),
-  };
-  console.log(requestOptions);
-  return fetch(
-    `${config.apiUrl}/users/${userId}/weekPlan/${day.toLowerCase()}`,
-    requestOptions
-  ).then(handleResponse);
+  return put(
+    `users/${userId}/weekPlan/${day.toLowerCase()}`,
+    JSON.stringify(req)
+  );
 }
 
 function getDaysToBeUpdated(userId) {
-  const requestOptions = {
-    method: "GET",
-    headers: { ...authHeader(), "Content-Type": "application/json" },
-  };
-  return fetch(
-    `${config.apiUrl}/users/${userId}/daysToBeUpdated`,
-    requestOptions
-  ).then(handleResponse);
+  return get(`users/${userId}/daysToBeUpdated`);
+}
+
+function getFavoriteRecipes(userId) {
+  return get(`users/${userId}/favRecipes`);
+}
+
+async function getRecommendedRecipes(userId) {
+  console.log(userId);
+  return get(`users/${userId}/recipes?nbr=6`);
 }
